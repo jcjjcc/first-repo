@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>手写ajax</title>
+</head>
+
+<body>
+    <ul id="members"></ul>
+    <script>
+        //   https://api.github.com/orgs/lemoncode/members  url -> http (status == 200 && xreadyState == 4) -> 异步耗时任务 
+        //     -> 执行流程(DOM) -> promise 
+        const getJson = function (url) {
+            return new Promise((resolve, reject) => {
+                // 微软推出，核心对象 XMLHttpRequest
+                const xhr = new XMLHttpRequest // 浏览器嗅探 在早期的浏览器中，特别是IE浏览器，XMLHttpRequest 对象并不是标准的，因此需要使用 ActiveXObject 来创建一个类似的对象来进行AJAX请求
+                ? new XMLHttpRequest()
+                : new ActiveXObject("Microsoft.XMLHTTP")
+                //第三个参数表示是否异步
+                xhr.open('GET', url, true)
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState !== 4) return
+                    // 304 Not Modified 
+                    // 第一次 查找 200 后端开销
+                    // 之后 只要后端的数据没有变化，没有必要再去查找
+                    // 就会返回 304 状态码 不传内容
+                    // 告诉浏览器，直接使用本地数据
+                    if (xhr.status === 200 || xhr.status === 304) {
+                        resolve(xhr.responseText)
+                    } else {
+                        reject(new Error(xhr.responseText))
+                    }
+                }
+                xhr.send()
+            })
+        }
+
+
+        getJson('https://api.github.com/orgs/lemoncode/members')
+        .then(data=>{
+            console.log(JSON.parse(data))
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    </script>
+
+</body>
+
+</html>

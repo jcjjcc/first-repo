@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Green Light",
+  "version": "1.0",
+  "description": "A simple Hello World Chrome extension",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+} 

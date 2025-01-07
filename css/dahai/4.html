@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    /* 
+    nth-child(3) 是一个基于元素在父元素中的位置的伪类选择器，
+    匹配 .container 中的第三个子元素。
+    如果 .container 中的第三个子元素是一个 p 元素，那么这个样式才会应用；
+    但如果在这个位置是其他元素（如 div、h1 等），这个样式将不会应用。
+    */
+    /*顺序*/
+    .container p:nth-child(3) {
+        background-color: yellow;
+        color: black;
+    }
+
+
+    /*
+    nth-of-type(3) 是基于类型的伪类选择器，匹配母元素下的第三个 p 元素。
+   这个选择器只关注 p 元素，因此如果在 .container 中的第三个位置是其他类型的元素，则不会被选中。
+    */
+
+    /*基于类型*/
+    .container p:nth-of-type(3) {
+        background-color: red;
+        color: black;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <h1>nth-child vs nth-of-type</h1>
+        <p>这是一个段落</p>
+        <div>这是一个div</div>
+        <p>这是第二个段落</p>
+        <p>这是第三个段落</p>
+        <div>这是第二个div</div>
+    </div>
+</body>
+</html>

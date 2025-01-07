@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BFC with Float Example</title>
+<style>
+  .container {
+    border: 5px solid blue;
+    padding: 20px;
+  }
+  .float-box {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: lightblue;
+  }
+  .box {
+    margin: 20px;
+    background-color: lightcoral;
+    height: 100px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="float-box"></div>
+  <div class="box"></div>
+</div>
+
+</body>
+</html>

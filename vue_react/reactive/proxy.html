@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy</title>
+</head>
+
+<body>
+    <div id="container">1</div>
+    <div id="count">2</div>
+    <button id="button">+1</button>
+    <button id="btn">点击*2</button>
+    <script>
+        // 匿名函数-》立即执行 + 回调函数（事件处理函数、定时器、文件操作）
+        (function () {
+            //函数作用域
+            //console.log(this); //window
+            //观察者模式
+            function watch(target, func) {
+                // es6 proxy 对象代理
+                const proxy = new Proxy(target, {
+                    get: function (target, prop) {
+                        console.log(`读取了 ${target} 和 ${prop}`)
+                        return target[prop]
+                    },
+                    set: function (target, prop, value) {
+                        target[prop] = value
+                        func(prop, value)
+                    }
+                })
+                return proxy
+            }
+            // 暴露给全局
+            this.watch = watch
+        })()
+
+        let obj = {
+            value: 1,
+            count: 1
+        }
+        console.log(obj)
+        var newObj = watch(obj, function (key, newValue) {
+            if (key === 'value') {
+                document.getElementById('container').innerHTML = newValue
+            }
+
+            if (key === 'count') {
+                document.getElementById('count').innerHTML = newValue
+            }
+        })
+        console.log(newObj)
+
+        document.getElementById('button')
+            .addEventListener('click', function () {
+                // 交给代理对象
+                newObj.value++  // .value 中 的value 是参数，get(target, prop)
+            })
+
+        document.getElementById('btn')
+            .addEventListener('click', function () {
+                newObj.count *= 2
+            })
+
+
+
+            /*
+            newObj 的 value 属性和 obj 的 value 属性在逻辑上是相关联的，但它们并不是同一个属性。
+            newObj 是一个代理对象，它通过 Proxy 机制来管理对 obj 的访问和修改。
+
+            当你对 newObj 进行 .value 的操作时，实际上是触发了 Proxy 对象的 get 陷阱。
+            在 get 陷阱中，代码会返回 target[prop]，其中 target 是被代理的对象 obj，prop 是属性名 value。
+            因此，newObj.value 实际上是返回了 obj.value 的值。
+            */
+    </script>
+</body>
+
+</html>

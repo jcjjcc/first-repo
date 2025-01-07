@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todoList</title>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        
+    </div>
+
+
+    <script>
+        const App ={
+            data(){
+                return {
+                    title:'',//输入的任务
+                    todos:[
+                        { title: '吃饭', done: false },
+                        { title: '睡觉', done: false },
+                        { title: '打豆豆', done: false }
+                    ],//任务列表
+                    all:3,//全部任务数
+                    active:3//进行中的任务数
+                }
+            }
+        }
+
+
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+</html>

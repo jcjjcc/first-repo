@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>属性选择器示例</title>
+    <style>
+        /* 1. 简单属性选择器 */
+        a[href] {
+            color: yellow;
+        }
+
+        /* 2. 属性等于值选择器 */
+        input[type="text"] {
+            border: 2px solid gray;
+        }
+
+        /* 3. 属性包含特定子串的选择器 */
+        a[href*="product"] {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h2>属性选择器示例页面</h2> 
+
+
+<a href="https://example.com">普通链接</a><br>
+<a href="https://shop.example.com/product/shoes">产品链接 (包含 'product')</a><br>
+
+
+<form>
+    <label for="username">用户名:</label>
+    <input type="text" name="username" id="username"><br><br>
+    
+    <label for="password">密码:</label>
+    <input type="password" name="password" id="password"><br><br>
+</form>
+
+</body>
+</html>

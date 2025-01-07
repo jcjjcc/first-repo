@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- html5画布 -->
+    <!-- 不是什么html元素,是绘制界面 -->
+    <canvas id="webglCanvas"></canvas>
+    <script>
+
+        const canvas = document.getElementById('webglCanvas')
+        // 绘制的上下文
+        const ctx = canvas.getContext('2d')
+        // 调用绘制API  canvas是绘制容器  绘制由上下文来进行 2d的         su7 webgl 3d
+        ctx.beginPath();
+        // 圆心
+        let x = canvas.width / 2;
+        let y = canvas.height / 2;
+        // 半径
+        let radius = 70;
+        // 起始角度
+        let startAngle = 30;
+        let endAngle = Math.PI;
+        let counterclockwise = false;
+        // 绘制圆弧
+        ctx.arc(x, y, radius, startAngle, endAngle, counterclockwise);
+        // 填充颜色
+        ctx.fillStyle = 'green';
+        // 描边颜色
+        ctx.stokeStyle = 'blue';
+        ctx.lineWidth = 5;
+        // 填充圆弧
+        ctx.fill();
+        // 描边圆弧
+        ctx.stroke();
+        ctx.closePath();
+    </script>
+</body>
+</html>

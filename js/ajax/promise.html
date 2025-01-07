@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        let num = 10
+        console.log('start')
+        //promise
+        const promise = new Promise((resolve, reject) => {
+
+            // 兑现承若的逻辑
+            resolve()
+
+        })
+        // then方法中的回调函数会进入任务队列，等待事件循环执行，因此这里的console.log('end')会先于then中的回调函数执行
+        promise.then(result => {
+            console.log(result) //undefined
+            num = 20
+        })
+        //先执行
+        console.log(num) //10
+        console.log('end')
+
+
+        // console.log('start');
+        // let myPromise = new Promise((resolve, reject) => {
+        //     // 模拟异步操作，例如网络请求
+        //     console.log('异步操作开始');
+        //     setTimeout(() => {
+        //         let success = true; // 假设操作成功
+        //         if (success) {
+        //             resolve("操作成功");
+        //         } else {
+        //             reject("操作失败");
+        //         }
+        //     }, 1000);
+        // });
+
+        // myPromise.then((successMessage) => {
+        //     console.log('成功回调函数执行')
+        //     console.log(successMessage); // 输出: 操作成功
+        // }).catch((errorMessage) => {
+        //     console.log('失败回调函数执行')
+        //     console.log(errorMessage); // 如果失败，输出: 操作失败
+        // });
+
+        // console.log('end'); 
+    </script>
+</body>
+
+</html>

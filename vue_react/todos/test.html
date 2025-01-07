@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todos</title>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #app {
+            max-width: 500px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .done {
+            color: gray;
+            text-decoration: line-through;
+        }
+
+        .footer{
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="title" @keydown.enter="addTodo" placeholder="新增任务..." />
+        <ul>
+            <li v-for="(todo, index) in todos" :key="index">
+                <input type="checkbox" v-model="todo.done">
+                <span :class="{ done: todo.done }">{{ todo.title }}</span>
+            </li>
+        </ul>
+        <div class="footer">
+            全选<input type="checkbox" v-model="allDone">
+            <span>未完成:{{ active }}  总数:{{ all }}</span>
+        </div>
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    title: '',
+                    todos: [
+                        { title: '吃饭', done: false },
+                        { title: '睡觉', done: false },
+                        { title: '打豆豆', done: false }
+                    ]
+                }
+            },
+            computed: {
+                all() {
+                    return this.todos.length
+                },
+                active() {
+                    return this.todos.filter(todo => !todo.done).length
+                },
+                allDone: {
+                    get() {
+                        return this.active === 0
+                    },
+                    set(val) {
+                        this.todos.forEach(todo => {
+                            todo.done = val
+                        })
+                    }
+                }
+            },
+            methods: {
+                addTodo() {
+                    if (this.title.trim()) {
+                        this.todos.push({
+                            title: this.title,
+                            done: false
+                        });
+                        this.title = '';
+                    }
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

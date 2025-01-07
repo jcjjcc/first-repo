@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 面向对象  OO
+        // 声明了常量对象 对象字面量 从字面意思就可以了解对象
+        const man = {
+            name: 'Tom',
+            age: 25,
+            hobbies: ['reading', 'painting', 'hiking'], // js没有数组，也是对象
+            sendFlower(){
+                woman.receiveFlower(man)
+            }
+        }
+
+        const woman = {
+            name: 'Jane',
+            age: 23,
+            hobbies: ['reading', 'painting', 'hiking'],
+            receiveFlower(){
+                console.log(`${man.name} sent a flower to ${woman.name}`)
+            }
+        }
+
+    </script>
+</body>
+</html>

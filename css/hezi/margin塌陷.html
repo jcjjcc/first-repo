@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>margin塌陷</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .outer {
+            width: 400px;
+            background-color: gray;
+            /* 开启一个BFC */
+            /* overflow: hidden; */
+        }
+
+        .inner1 {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            /* margin-top: 50px; */
+        }
+
+        .inner2 {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            /* margin-bottom: 50px; */
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner1">inner1</div>
+        <div class="inner2">inner2</div>
+    </div>
+    <div>别抢我兵线</div>
+</body>
+</html>

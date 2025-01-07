@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+         /* 相邻兄弟选择器 连着  */
+        h1 + p {
+            color: red;
+        }
+        /* 通用兄弟选择器    +  ~不影响得分 */
+        h1 ~ p {
+            color: blue;
+        }
+        /* 子元素选择器 
+            inner 元素内的 p 元素不会加粗
+            只有直接子元素才会加粗
+        */
+        .container > p {
+            font-weight: bold;
+        }
+
+        /*
+        后代选择器
+        container内所有的 p 元素都会加下划线
+        */
+        .container  p {
+            text-decoration: underline;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>标题</h1>
+        <p>这是第一段文字</p>
+        <p>这是第二段文字</p>
+        <a href="">链接</a>
+        <span>这是一个span元素</span>
+        <p>这是第三段文字</p>
+        <div class="inner">
+            <p>这是内部的段落</p>
+        </div>
+    </div>
+</body>
+
+</html>

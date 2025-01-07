@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3 </title>
+    <!-- 不是本地  通过cdn 引入 内容分发网络
+    静态资源（html、css、js、图片） 动态（java, node, 数据库）
+    cdn  快速内容访问和分发的机制 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.4.9/vue.global.js"></script>
+</head>
+<body>
+    <!-- vue3 工作的挂载点 -->
+    <div id="root">
+        <!-- Vue应用的领地 -->
+        <h1>{{ str }} {{ LLM }}</h1>
+        <p>Count: {{ count1 }}</p>
+        <button @click="increment">+1</button>
+
+    </div>
+    <script type="module">
+    const {
+        createApp,
+        ref //创建Vue应用
+    } = Vue
+    createApp({
+        // 数据
+        // setup准备应用需要的数据
+        setup() {
+            let count = ref(0)// 创建一个响应式对象, 规避了DOM操作
+            let count1 = 0 //简单的变量
+            console.log(Object.prototype.toString.call(count))
+            console.log(Object.prototype.toString.call(count1))
+            const str = ref('hello')
+            const increment = () => {
+                //console.log('count++')
+                // count.value++
+                count1++
+                console.log(count1)
+            }
+            return {
+                LLM: 'Llama3',
+                count,
+                count1,
+                str,
+                increment
+            }
+        }
+    }).mount('#root') //挂载到id为root的元素上
+    </script>
+</body>
+</html>

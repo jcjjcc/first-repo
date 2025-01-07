@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css</title>
+    <style>
+        /* 1 */
+        p {
+            color: blue !important;/*!important 强制覆盖 */
+        }
+        /* 11 */
+        .container p{
+            color: red;
+        }
+        /* 101 */
+        .main p {
+            color: green;
+        }
+
+        .container span{
+            color: red;
+        }
+        /* 101 */
+        .main span{
+            color: green;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- attributes属性 -->
+    <div class="main" class="container">
+        <!-- 行内样式 1000 -->
+        <p style="color:pink">This is a paragraph</p>
+        <span style="color:pink">This is span</span>
+    </div>
+</body>
+</html>
