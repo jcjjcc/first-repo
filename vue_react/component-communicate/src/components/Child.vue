@@ -1,20 +1,21 @@
 <template>
-    <div>
-        Child
+    <div class="child">
+      <h3>子组件1</h3>
+      <h4>我的玩具：{{ toy }}</h4>
+      <button @click="getCar($parent)">拿走父亲的车</button>
     </div>
-</template>
-
-<script setup>
-import { defineExpose } from 'vue'
-
-defineExpose({
-    childName: '这是子组件的属性',
-    someMethod(){
-        console.log('这是子组件的方法')
+  </template>
+  
+  <script setup lang="ts" name="Child">
+      import { ref } from "vue";
+      const toy = ref("小熊猫");
+      defineExpose({toy})
+      function getCar(parent) {
+      parent.house -=1
     }
-})
-</script>
-
-<style scoped>
-
-</style>
+  </script>
+  <style scoped>
+    .child {
+        background-color: aqua;
+    }
+ </style>

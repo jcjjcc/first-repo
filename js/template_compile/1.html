@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let template = '我是{{name}},年龄{{age}},性别{{sex}}'
+        let person = {
+            name: '张三',
+            age: 25,
+            sex: '男'
+        }
+
+        // 正则一个个字符匹配 1 第一个字符
+        // [0-9] 匹配的范围  一个字符 0-9任意一个数字
+        // ^ 从字符串的开始匹配
+        // {10} 匹配10次 [0-9]匹配十次
+        // let reg = /^1[0-9]{10}$/
+        // console.log(reg.test('11222222222'))
+        // let reg = /\{\{(\w+)\}\}/
+
+        // 规则 {{}} 正则 replace  
+        // vue 挂载前 实例化过程 内存中 模板先编译
+
+        function compile(template, data) {
+            // + 贪婪匹配 一次或多次
+            // * 0次或多次
+            // g 全局匹配 修饰符
+            let reg = /\{\{([a-z]+)\}\}/
+            // console.log('1',reg.exec(template))
+            // console.log('11',template.match(reg))
+            while (reg.test(template)) {
+                let key = reg.exec(template)[1]
+
+                let value = data[key]
+                // 正则替换  {{name}} -> value
+                template = template.replace(reg, value)
+            }
+            return template
+        }
+
+        function compile1(template, data) {
+            // 正则一个个字符匹配  1  第一个字符
+            // [0-9] 匹配的范围 一个字符 0-9 任何一个数字 [] 一个 0-9 -  范围
+            // 从字符串的开始匹配
+
+            const reg = /\{\{([a-z]+)\}\}/g
+            // 使用 replace 方法遍历所有匹配项
+            //这是与整个正则表达式相匹配的子字符串。
+            // 如果正则表达式中包含捕获组（即用圆括号()包围的部分），那么path将代表第一个捕获组所匹配的文本。
+            // match 和 path 参数是由replace方法基于正则表达式的匹配结果自动生成并传递给回调函数的。
+            return template.replace(reg, (match, path) => {
+                //console.log(match, path)
+                return path in data ? data[path] : '';
+            }
+            );
+
+        }
+
+        function compile(template, data) {
+            // 正则表达式
+            const reg = /\{\{(\w+)\}\}/;
+            // console.log(Object.prototype.toString.call(reg))
+            if (reg.test(template)) {
+                const key = reg.exec(template)[1]; // 拿到分组中的key （） 
+                template = template.replace(reg, key in data ? data[key] : "")
+                return compile(template, data)
+            } else {
+                return template; // 退出条件
+            }
+        }
+
+
+        console.log(compile1(template, person)) 
+    </script>
+</body>
+
+</html>

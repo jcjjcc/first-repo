@@ -12,15 +12,12 @@ import {
     defineEmits,
 } from 'vue'
 const childMessage = ref('Hello ,parent!')
-defineProps({
-    title: {
-        type: String,
-        required: true
-    }
-})
+
+
 // emits 触发 汇报
 const emits = defineEmits(['child-message'])
 const sendMessageToParent = () => {
+    
     emits('child-message', childMessage.value)
 }
 </script>

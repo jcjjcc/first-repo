@@ -4,7 +4,6 @@
 
 <template>
   <div>
-    <el-button type="primary">主要按钮</el-button>
     <router-view/>
   </div>
 
@@ -12,7 +11,7 @@
 
 <style scoped>
 .logo {
-  height: 6em;
+  height: 9em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;

@@ -1,0 +1,61 @@
+<template>
+    <div class="child">
+        <p class="child-text">子组件</p>
+    </div>
+</template>
+
+<script setup>
+import { defineExpose } from 'vue'
+
+defineExpose({
+    childName: '这是子组件的属性',
+    someMethod(){
+        console.log('这是子组件的方法')
+    }
+})
+</script>
+
+<style scoped>
+.child {
+    padding: 30px;
+    background-color: aqua;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.child-text {
+    margin-right: 200px;
+    /* 移除 margin: 0 auto; */
+    text-align: left; /* 添加这行代码确保文本左对齐 */
+}
+</style>
+
+
+<template>
+    <div class="parent">
+        <p class="title">父组件</p>
+        <button @click="handleClick">按钮</button>
+        <Child ref="comp"/>
+    </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import Child from './Child.vue'
+const comp = ref(null) // 标记DOM元素  null 组件没有挂载 BOM也没在
+const title = ref('标题') //标记数据
+const handleClick = () => {
+  console.log(comp.value.childName)
+  comp.value.someMethod()
+  console.log(title.value)
+}
+</script>
+
+<style scoped>
+.parent {
+  background-color: slategrey;
+  height: 200px;
+}
+.title {
+  margin-right: 400px;
+}
+</style>

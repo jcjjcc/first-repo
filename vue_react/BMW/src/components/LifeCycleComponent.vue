@@ -1,49 +1,46 @@
 <template>
-    <div>
-        <p id="count">LifrCycleComponent: {{ count }}</p>
+    <div class="person">
+      <h2>当前求和为：{{ sum }}</h2>
+      <button @click="changeSum">点我sum+1</button>
     </div>
-</template>
-
-<script setup>
-import { defineProps, onBeforeMount, onMounted , onUnmounted, onBeforeUnmount, onUpdated ,onBeforeUpdate} from 'vue';
-defineProps({
-    count: {
-        type: Number,
-        required: true
+  </template>
+  
+  <!-- vue3写法 -->
+  <script lang="ts" setup name="Person">
+    import { 
+      ref, 
+      onBeforeMount, 
+      onMounted, 
+      onBeforeUpdate, 
+      onUpdated, 
+      onBeforeUnmount, 
+      onUnmounted 
+    } from 'vue'
+  
+    // 数据
+    let sum = ref(0)
+    // 方法
+    function changeSum() {
+      sum.value += 1
     }
-})
-
-// console.log('haha')
-onBeforeMount(() => {
-    console.log(document.getElementById('count'),'-------')
-    console.log('onBeforeMount')
-})
-//组件有生老病死
-onMounted(() => {
-    //on 某个阶段
-    //mounted  挂载
-    // 已经完成了挂载
-    console.log('onMounted')
-})
-
-onUnmounted(() => {
-    console.log('onUnmounted')
-})
-
-onBeforeUnmount(() => {
-    console.log('onBeforeUnmount')
-})
-
-onUpdated(() => {
-    console.log('onUpdated')
-})
-
-onBeforeUpdate(() => {
-    console.log('onBeforeUpdate')
-})
-
-
-
-</script>
-
-<style scoped></style>
+    console.log('setup')
+    // 生命周期钩子
+    onBeforeMount(()=>{
+      console.log('挂载之前')
+    })
+    onMounted(()=>{
+      console.log('挂载完毕')
+    })
+    onBeforeUpdate(()=>{
+      console.log('更新之前')
+    })
+    onUpdated(()=>{
+      console.log('更新完毕')
+    })
+    onBeforeUnmount(()=>{
+      console.log('卸载之前')
+    })
+    onUnmounted(()=>{
+      console.log('卸载完毕')
+    })
+  </script>

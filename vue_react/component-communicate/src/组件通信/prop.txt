@@ -1,0 +1,57 @@
+<template>
+    <div class="child">
+      <h3>子组件</h3>
+          <h4>我的玩具：{{ toy }}</h4>
+          <h4>父给我的车：{{ car }}</h4>
+          <h4>父给我的外貌：{{ handsome }}</h4>
+          <button @click="invokeParent">玩具给父亲</button>
+    </div>
+  </template>
+  
+  <script setup lang="ts" name="Child">
+      import { ref } from "vue";
+      const toy = ref('奥特曼')
+      
+      let props = defineProps(['car','handsome','getToy'])
+      function invokeParent() {
+        props.getToy(toy.value)
+      }
+      
+  </script>
+  <style scoped>
+    .child {
+        background-color: aqua;
+    }
+ </style>
+
+
+
+ <template>
+  <div class="father" >
+    <h3>父组件，</h3>
+    <h4>我的车：{{ car }}</h4>
+    <h4>儿子给的玩具：{{ toy }}</h4>
+    <Child :car="car" handsome="帅气" :getToy="getToy" />
+  </div>
+</template>
+
+<script setup lang="ts" name="Father">
+  import Child from './Child.vue'
+  import { ref } from "vue";
+  // 数据
+  const car = ref('奔驰')
+  const toy = ref()
+  // 方法
+  function getToy(value){
+    toy.value = value
+  }
+</script>
+
+<style scoped>
+.father {
+  background-color:cadetblue;
+  border: 1px solid #ccc; 
+  padding: 10px; 
+  margin-bottom: 20px;
+}
+</style>

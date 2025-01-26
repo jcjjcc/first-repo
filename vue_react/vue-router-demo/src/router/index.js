@@ -54,7 +54,7 @@ const routes = [
         path: '/about',
         meta: {
             title: '关于',
-            requireAuth: true, // 页面级别组件权限控制
+            requireAuth: false, // 页面级别组件权限控制
         },
         name: 'about',
         component: About,

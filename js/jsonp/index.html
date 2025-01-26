@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <ul id="list">
+
+    </ul>
+    <script>
+        let list = document.getElementById('list');
+        // fetch("http://127.0.0.1:3000")  // 跨域请求
+        let jsonp = (url, callback) => {
+            let oScript = document.createElement('script');
+            oScript.src = url;
+            document.body.appendChild(oScript);
+            window.callback = callback
+        }
+
+        jsonp("http://localhost:3000",(data) => {
+                list.innerHTML = data.map(item => `<li>${item.name}</li>`).join('');
+                delete window.callback;
+            })
+
+
+
+             // var a = 10;
+        // let b = 20;
+        // function callback(data) {
+        //     list.innerHTML = data.map(item => `<li>${item.name}</li>`).join('');
+        //     console.log("hello")
+        // }
+        // console.log("window.a=", window.a);
+        // console.log("window.b=", window.b);
+        // console.log("window.callback=", window.callback);
+        // let jsonp = (url, callback) => {
+        //     let oScript = document.createElement('script');
+        //     oScript.src = url;
+        //     document.body.appendChild(oScript);
+        //     delete window.callback;
+        // }
+
+        // jsonp("http://localhost:3000")
+    </script>
+       
+   
+    
+</body>
+
+</html>

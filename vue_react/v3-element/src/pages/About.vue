@@ -1,11 +1,21 @@
 <template>
     <div>
-        About
+        About{{ username }}
     </div>
 </template>
 
 <script setup>
-console.log('About page loaded')
+import { onMounted,ref } from 'vue'
+import { getUserInfo } from '../api';
+const username = ref('')
+onMounted(()=>{
+    const getUserInfoRes = async() => {
+        const res = await getUserInfo()
+        console.log(res)
+        username.value = res.data.data.user
+    }
+    getUserInfoRes()
+})
 </script>
 
 <style scoped>
