@@ -18,10 +18,7 @@ const server = http.createServer((req, res) => {
     id: 2,
     name: 'ls'}
 ]
-  console.log(JSON.stringify(users))
-  console.log(users)
-  console.log(`callback(${JSON.stringify(users)})`)
-  console.log(`callback(${users})`)
+
 
   res.end(`callback(${JSON.stringify(users)})`)
   //res.end(`callback(${JSON.stringify(users)}); console.log(a,b)`)
@@ -29,4 +26,5 @@ const server = http.createServer((req, res) => {
 
 server.listen(3000, () => {
   console.log('server is running at port 3000')
+
 })
