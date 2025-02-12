@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 0;
+        console.log(a,window.a); //0,0
+        //function声明的函数，整个声明都会被提升到当前作用域的顶部，在if代码块中就有了个名为a的变量
+        if (true) {
+            console.log(a,window.a);//f,0 
+            a = 10;
+            console.log(a,window.a); //10,0
+            function a(){} ///隐式操作：将当前的a变量绑定到全局作用域的a变量上
+            console.log(a,window.a); //10,10 
+            a = 20;
+            console.log(a,window.a); //20,10
+        }
+        console.log(a,window.a); //10,10
+    </script>
+</body>
+</html>

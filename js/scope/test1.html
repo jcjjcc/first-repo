@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 0;
+        console.log(a,window.a); 
+        if (true) {
+            console.log(a,window.a); 
+            a = 10;
+            console.log(a,window.a); 
+            var a = function(){}
+            console.log(a,window.a);  
+            a = 20;
+            console.log(a,window.a); 
+        }
+        console.log(a,window.a); 
+    </script>
+</body>
+</html>

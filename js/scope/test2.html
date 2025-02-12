@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 顶级函数声明和块中的函数声明在记录到文本环境时的差异：
+        // 1.顶级函数声明会被初始化为函数对象
+        // 2.块中的函数声明若与之前记录的变量名相同，就对块中的函数声明不做任何处理
+        // 3.块中声明的函数声明没有重名，在全局对象中创建一个以函数名为名的变量，并初始化为undefined
+
+        console.log(myFunction); // undefined
+        // console.log(test); // function test(){}
+        // function test(){}
+        // var myFunction = 10;
+        if (false) {
+            function myFunction() {
+                console.log('myFunction');
+            }
+        }
+        myFunction();  
+    </script>
+</body>
+</html>
