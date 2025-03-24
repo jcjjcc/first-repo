@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 30px; 
+        }
+        div {
+            font-size: 1rem;
+        }
+    </style>
+    <script>
+     (()=>{
+        const useRem = () => {
+                let w = document.documentElement.clientWidth;
+                // console.log(w);
+                let size = w/10 + 'px';
+                document.documentElement.style.fontSize = size;
+        }
+        window,addEventListener('resize', useRem);
+        document.addEventListener('DOMContentLoaded', useRem);
+    })()
+      
+    </script>
+</head>
+<body>
+    <div>一段文字</div>
+</body>
+</html>
