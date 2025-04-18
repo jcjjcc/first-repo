@@ -90,19 +90,52 @@
   - baseURL 前后端分离，前端访问后端接口，一般都会以/api 开头 baseURL统一配置
   - axios proxy
     跨域解决新方案
+  - 请求、响应拦截器
+   - 统一的token处理
+     统一的请求报错处理
+   - axios相比fetch的区别和好处
+
   
 
 
 - cookie
  - XSS 跨站脚本攻击
 不法分子利用网站漏洞，注入恶意脚本代码，在用户浏览网页时执行，从而获取用户敏感信息（cookie）或执行其他恶意操作
-  - 
+ - 大小 kb 
+   请求时浏览器帮你自动带上  太大会影响http性能
+ - domain
+ - expires
+ - httponly只有请求时带上 js没有办法获取 更安全
+   XXS攻击
+ - secure
+ - samesite strict lax  none
+ 
 
 
+- react的props类型约束
+  -  npm i prop-types
+  - 函数组件对象的proTypes属性
+   比如NavVar组件接收了一个showNav的prop
+   NavBar.propTypes = {
+    showNav: PropTypes.bool
+  }
+   
+- css
+  - npm i classnames
+     classnames是一个用于动态生成CSS类名的工具库,支持根据条件灵活组合多多个类名,简化了JSX中类名管理。通过 cx函数,你可以方便地在React组件中应用条件样式。
+  - 伪类选择器 nth-of-type
 
--  npm i prop-types
+  
 
-
+## 业务开发
+- NavBar组件 公共组件 导航栏
+  使用的是zarm TabBar
+- 单页应用
+- react的hooks ？
+  - memo
+  - useMemo
+  - useCallback 
+  
 
 
 
@@ -126,6 +159,11 @@
  - 测试
  - 部署上线
 
+ - 跨域
+   proxy代理  如果前端直接axios发送 XMLHTTPRequst请求，会被浏览器限制
+   如果vite服务先拦截了，由服务器向后端发送请求，就是普通的http请求
+   - 开发阶段跨域？
+   - 上线阶段会吗？
 
  - AI编程工具的使用
    - MarsCode
@@ -142,6 +180,16 @@
    数据库操作CURD
  - model层
    将数据库表映射成对象
+    ORM 对象关系映射 讲数据库与程序中的对象建立映射，让开发者用操作对象的方式操作数据库
  - controller层
    处理请求和响应
+  
    
+
+- utils目录下 和 hooks目录
+- react和vue slot 和props.children的区别
+  
+
+- 登录
+  - 前端login组件  表单提交
+  - 

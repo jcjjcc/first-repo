@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TabBar } from 'zarm';
+import { Tabbar, TabbarItem } from 'vant';
 // 有哪些类型
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
@@ -17,27 +17,36 @@ const NavBar = ({ showNav }) => {
   }
 
   return (
-    <TabBar className={s.tab} visible={showNav} activeKey={activeKey} onChange={changeTab}>
-      <TabBar.Item
-        itemKey="/"
-        title="账单"
-        icon={<CustomIcon type="zhangdan" />}
-      />
-      <TabBar.Item
-        itemKey="/data"
-        title="统计"
-        icon={<CustomIcon type="tongji" />}
-      />
-      <TabBar.Item
-        itemKey="/user"
-        title="我的"
-        icon={<CustomIcon type="wode" />}
-      />
-    </TabBar>
+    <Tabbar
+      className={s.tab}
+      value={activeKey}
+      onChange={changeTab}
+      fixed={showNav}
+    >
+      <TabbarItem
+        name="/"
+        icon={<CustomIcon name="notes-o" />}
+      >
+        账单
+      </TabbarItem>
+      <TabbarItem
+        name="/data"
+        icon={<CustomIcon name="chart-trending-o" />}
+      >
+        统计
+      </TabbarItem>
+      <TabbarItem
+        name="/user"
+        icon={<CustomIcon name="user-o" />}
+      >
+        我的
+      </TabbarItem>
+    </Tabbar>
   );
 };
 // vue defineProps 
 // react 申明组件的类型
+// 为什么函数也能加属性呢，
 NavBar.propTypes = {
   showNav: PropTypes.bool
 }

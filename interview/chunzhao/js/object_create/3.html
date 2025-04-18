@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = {
+            name: 'ABC',
+            fn : function(a,b){
+                console.log(this)
+                console.log(a+b)
+            }
+        }
+        var b =a.fn
+        b(1,2)
+        b.apply(a,[1,2])//3
+        
+        b.call(a,[1,2])//1,2undefined
+
+        b.bind(a,[1,2])() //  1,2undefined
+        b.bind(a,1,2)()   //3
+
+        //call和apply
+        //1.传参方式不同
+        //2.call和apply的第一个参数都是this的指向
+    </script>
+</body>
+</html>

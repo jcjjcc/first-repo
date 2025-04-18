@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    <input type="text">
+    <script>
+        //防抖：
+        //延迟执行
+        //在持续的触发这个事件，就不断的清理掉之前的定时器，只留下最后一次的定时器的执行
+        
+        let oInput = document.querySelector('input');
+        // let timer = null;
+        // oInput.oninput = function(){
+        //    if(timer){
+        //        clearTimeout(timer);
+        //    }
+        //    let _this = this;//不使用箭头函数
+        //    timer = setTimeout(function (){
+        //        console.log(_this.value);
+        //    },1000)
+        // }
+        //封装防抖函数
+        oInput.oninput = debounce(function(){
+            // console.log(this);直接调用，this会指向window
+            console.log(this.value);
+        },1000)
+        // function debounce(fn,delay){
+        //     let timer = null;
+        //     return function(){
+        //         if(timer){
+        //             clearTimeout(timer);
+        //         }
+        //         // console.log(this); //指向input
+        //         timer = setTimeout(() => {
+                    
+        //             fn.call(this);
+        //         }, delay);
+        //     } 
+        // }
+
+
+        function debounce(fn,delay){
+            let timer = null;
+            return function(){
+                if(timer){
+                    clearTimeout(timer);
+                }
+                let _this = this;
+                timer = setTimeout(function(){
+                    fn.call(_this);
+                }, delay);
+            } 
+        }
+
+        //相同点：对高频触发事件进行优化
+        //节流：
+        //在一段时间内，只执行一次
+
+    </script>
+</body>
+</html>

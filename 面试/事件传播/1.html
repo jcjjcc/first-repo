@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+       .grandparent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+       .parent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            background-color:green;
+        }
+       .child {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="grandparent">
+        <div class="parent">
+            <div class="child">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const grandparent = document.querySelector('.grandparent');
+    const parent = document.querySelector('.parent');
+    const child = document.querySelector('.child');
+    grandparent.addEventListener('click', (e) => {
+        console.log('红色',e.eventPhase);
+    },true)
+    parent.addEventListener('click', (e) => {
+        e.stopImmediatePropagation();
+        // e.stopPropagation();
+        console.log('绿色', e.eventPhase); 
+    },true)
+    parent.addEventListener('click', (e) => {
+        console.log('hello', e.eventPhase);
+    },true)
+    child.addEventListener('click', (e) => {
+        console.log('蓝色', e.eventPhase); 
+    },true)
+</script>
+</html>

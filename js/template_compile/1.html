@@ -67,7 +67,7 @@
             const reg = /\{\{(\w+)\}\}/;
             // console.log(Object.prototype.toString.call(reg))
             if (reg.test(template)) {
-                const key = reg.exec(template)[1]; // 拿到分组中的key （） 
+                const key = reg.exec(template)[1]; 
                 template = template.replace(reg, key in data ? data[key] : "")
                 return compile(template, data)
             } else {

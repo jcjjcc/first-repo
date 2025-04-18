@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav id="nav">
+        <ul>
+            <li><a href="#/page1">page1</a></li>
+            <li><a href="#/page2">page2</a></li>
+            <li><a href="#/page3">page3</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div id="container">
+
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        class HashRouter{
+            constructor(){
+                // 路由配置
+                this.routes = {};
+                // this丢失 this指向window
+                // 为什么不用call和apply  这两个不会返回一个新的函数
+                window.addEventListener('hashchange', this.load.bind(this), false);
+            }
+            // 注册路由
+            register(hash, callback = function(){}){
+                this.routes[hash] = callback;
+            }
+
+            registerIndex(callback = function(){}){
+                this.routes['/index'] = callback;
+            }
+
+            //模块化
+            load(){
+                // console.log(this)
+                //BOM 对象
+                let hash = location.hash.slice(1) || '/index'//去掉#
+                // console.log(hash)    //去routes 查一下
+                // 去routes 查一下
+                let callback = this.r3outes[hash] 
+                callback.call(this)
+            }
+
+        }
+        const router = new HashRouter()
+        router.registerIndex(function(){
+            document.getElementById('container').innerHTML = '首页' 
+        })
+        router.register('/page1',function(){
+            document.getElementById('container').innerHTML = 'page1'
+        })
+        router.register('/page2',function(){
+            console.log(this)
+            document.getElementById('container').innerHTML = 'page2'
+        })
+        router.register('/page3',function(){
+            document.getElementById('container').innerHTML = 'page3' 
+        })
+
+        router.load()
+
+        // 从api使用者
+        // 为什么要用vue-router ？ 它把路由的实现封装好了
+        // 暴露好用的路由配置接口
+
+        // window.addEventListener("hashchange",function(event){
+        //         console.log(event)
+        // })
+    </script>
+</body>
+</html>

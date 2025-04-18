@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 'use strict'
+        // function sum(num1,num2,num3){
+        //     console.log(num1+num2,this)
+        // }
+        // sum.call('call',1,2,3)
+        // sum.apply('apply',[1,2,3])
+        // sum.call(undefined,1,2,3)
+        // sum.apply(null,[1,2,3])
+
+        function foo(){
+            console.log(this)
+        }
+        var bar = foo.bind('bind')
+        bar()
+        bar()
+        bar()
+    </script>
+</body>
+</html>

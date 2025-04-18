@@ -1,3 +1,4 @@
+//@是如何工作的
 import Home from '@/views/Home'
 import Data from '@/views/Data'
 import User from '@/views/User'

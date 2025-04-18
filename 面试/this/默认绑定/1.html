@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict'
+        // function foo1(){
+        //     console.log(this)
+        // }
+        // function foo2(){
+        //     console.log(this)
+        //     foo1()
+        // }
+        // function foo3(){
+        //     console.log(this) 
+        //     foo2()
+        // }
+        // foo3()
+
+        // var obj = {
+        //     name: 'obj',
+        //     foo1: function () {
+        //         console.log(this)
+        //     },
+        // }
+        // var bar = obj.foo1;
+        // bar()
+
+        function foo(){
+            function bar(){
+                console.log(this)
+            }
+            return bar
+        }
+        const fn = foo()
+        fn()
+
+    </script>
+</body>
+</html>

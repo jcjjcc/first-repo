@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+            // return {
+            //     name:this.name,
+            //     age:this.age,
+            //     tag:'haha'
+            // }
+            return null
+        }
+        Person.prototype.sayName = function(){
+            console.log(this.name)
+        }
+
+
+        //rest运算符
+        //rest运算符（...）用于获取函数的多余参数，这样就不需要使用arguments对象了。
+        function objectFactory(fn,...args){
+            // 1.创建一个空对象
+            const obj = {}
+            // 2.手动的将这个对象的_proto_ 指向 Person.prototype
+            obj.__proto__ = fn.prototype
+            const ret = fn.apply(obj,args)
+            console.log(ret)
+            return typeof ret === 'object' ? ret : obj
+        }
+
+        let p3 = objectFactory(Person,'张三',18)
+        console.log(p3)
+        console.log(p3.__proto__ === Object.prototype)
+        p3.sayName()
+
+
+        /*
+        1.创建一个空对象
+        2.构造函数绑定this并执行，完成对象属性的设置
+        3.将对象的__proto__指向构造函数的原型
+        4.判断构造函数的返回值类型，如果是对象，就返回这个对象，‘
+        5.否则返回创建的对象（我只想要一个对象，不想要proyotype）
+        */
+
+        
+
+    </script>
+</body>
+</html>

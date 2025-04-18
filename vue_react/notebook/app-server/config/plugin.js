@@ -5,7 +5,11 @@ module.exports = {
   //   enable: true,
   // }
   mysql: {
+    enable:true,
+    package: 'egg-sequelize'
+  },
+  jwt: {
     enable: true,
-    package: "egg-sequelize",
+    package: 'egg-jwt'
   }
 };

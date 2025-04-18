@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var name = 'window'
+        var person1 = {
+            name: 'peson1',
+            foo1: function () {
+                console.log(this.name)
+            },
+            foo2: () => console.log(this.name),
+
+            foo3: function () {
+                return function () {
+                    console.log(this.name)
+                }
+            },
+            foo4: function () {
+                return () => {
+                    console.log(this.name)
+                }
+            }
+        }
+
+
+        var person2 = { name: 'person2' }
+        person1.foo1();//person1 隐式绑定
+        person1.foo1.call(person2);//person2  显示绑定大于隐式绑定
+
+        person1.foo2()//window  箭头函数继承的this是全局作用域
+        person1.foo2.call(person2);//window 箭头函数无法被显示绑定
+
+        person1.foo3()()//window 理解为person1.foo3()返回的是一个普通函数fn，然后fn(),默认绑定
+        person1.foo3.call(person2)()//window  foo3()函数被显示绑定，但是foo3()函数返回的是一个普通函数，所以普通函数的this指向window
+        person1.foo3().call(person2)//person2 最终调用返回函数式,使用的是显示绑定
+
+        person1.foo4()()//person1 箭头函数不绑定this,上层作用域this是personl
+        person1.foo4.call(person2)();//person2 上层作用域被显示的绑定了person2
+        person1.foo4().call(person2);//person1 上层作用域已经被显示的绑定了person1，call无法改变箭头this的指向
+    
+    </script>
+</body>
+
+</html>

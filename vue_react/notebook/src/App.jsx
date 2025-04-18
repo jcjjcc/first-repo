@@ -7,21 +7,25 @@ import {
   useLocation
 } from "react-router-dom"
 import routes from "@/router";
-import { ConfigProvider} from 'zarm';
-// import 'zarm/dist/zarm.css';
+
+// import 'zarm/dist/zarm.css'; // vite-plugin-style-import自动导入css样式
+
 import NavBar from "@/components/NavBar";
 import s from './App.module.less'
-
+// import { getUserInfo } from "./utils";
 
 export default function App() {
   const [showNav, setShowNav] = useState(false)
   const needNav = ['/','/data','/user']
+  //拿到当前url路径，与需要显示NavBar的组件对比
   const {pathname} = useLocation()
   useEffect(() => {
     setShowNav(needNav.includes(pathname))
   },[pathname])
+  // useEffect(()=>{
+  //   getUserInfo()
+  // },[])
   return (
-      <ConfigProvider primaryColor="#007fff">
         <div className={s.app}>
           <Routes>
             {
@@ -30,6 +34,5 @@ export default function App() {
           </Routes>
           <NavBar showNav={showNav} />
         </div>
-      </ConfigProvider>
   )
 }

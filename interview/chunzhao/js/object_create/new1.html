@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.sayName = function(){
+            console.log(this.name)
+        }
+
+        //new 实例化运算符
+        //1.创建一个新对象 {} 和 Person 没有血缘关系
+        // {} 的_proto_ 指向 Object.prototype
+        //2.手动的将这个对象的_proto_ 指向 Person.prototype
+        //3.执行构造函数，并且将this 指向这个新对象
+        //4.返回这个新对象
+        const p1 = new Person('张三',18)
+        const p2 = new Person('李四',19)
+        // p1.sayName()
+        // p2.sayName()
+
+
+        //new 运算符的实现
+
+        function objectFactory(){
+            const obj = new Object();
+            //arguments 类数组,没有shift方法,使用 call 方法把 shift 方法的 this 指向 arguments 对象，也就是让 arguments 对象“借用”数组的 shift 方法。
+            const Constructor = [].shift.call(arguments);
+           //类数组对象具备 length 属性，并且可以通过索引访问元素，这满足 apply 方法拆解参数的需求。
+            Constructor.apply(obj,arguments)
+            obj.__proto__ = Constructor.prototype
+            return obj
+        }
+
+        let p3 = objectFactory(Person,'张三',18)
+        console.log(p3.__proto__)
+        console.log(p3.name)
+
+
+
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    const template = `
+        <h1>{{title}}</h1>
+        <p>{{content}}</p>
+    `
+    const reg = /\<(.+?)\>\{\{(.+?)\}\}\<\/.+?\>/g
+    console.log(reg.exec(template))
+    console.log(template.match(reg))
+    // while ((result = reg.exec(template)) !== null) {
+    //         console.log(result);
+    //     }
+</script>
+</body>
+</html>

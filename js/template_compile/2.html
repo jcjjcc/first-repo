@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let template = '我是{{name}},年龄{{age}},性别{{sex}}'
+        let person = {
+            name: '张三',
+            age: 25,
+            sex: '男'
+        }
+
+       
+        // console.log(reg.test(template))
+        // console.log(reg.exec(template))
+
+        
+
+
+
+        function compile(template, data) {
+             const reg = /\{\{([a-z]+)\}\}/
+             while(reg.test(template)){
+                console.log(reg.exec(template)) 
+             }
+        }
+        compile(template, person)
+    </script>
+</body>
+</html>

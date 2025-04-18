@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <nav id="nav">
+    <ul>
+      <li><a href="/page1">page1</a></li>
+      <li><a href="/page2">page2</a></li>
+      <li><a href="/page3">page3</a></li>
+      <li><a href="/page4">page4</a></li>
+      <li><a href="/page5">page5</a></li>
+    </ul>
+  </nav>
+  <main>
+    <div id="container"></div>
+  </main>
+  <script>
+    class HistoryRouter {
+       constructor(){
+         this.routes = {};
+         this.listenLink();
+       }
+       
+       listenLink(){
+        window.addEventListener('click', (e)=>{
+            let dom = e.target;
+            if(dom.tagName.toUpperCase() === 'A' && dom.getAttribute('href')){
+               e.preventDefault();  
+               this.assign(dom.getAttribute('href'))         
+            }
+        }
+       )}
+
+       assign(path){
+        //html5 的 history api url改变 不会刷新页面
+          window.history.pushState({path}, null, path);
+       }
+
+    }
+    const router = new HistoryRouter()
+  </script>
+</body>
+</html>

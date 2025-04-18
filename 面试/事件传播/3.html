@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="parent">
+        <div id="target">点击我</div>
+    </div>
+    <script>
+        const parent = document.getElementById('parent');
+        const target = document.getElementById('target');
+
+        // 父元素的捕获和冒泡监听器
+        parent.addEventListener('click', () => console.log('父捕获'), true);   // 捕获阶段
+        parent.addEventListener('click', () => console.log('父冒泡'), false);  // 冒泡阶段
+
+        // 目标元素的捕获和冒泡监听器（注册顺序影响执行顺序）
+        target.addEventListener('click', () => console.log('目标冒泡'), false); // 先注册
+        target.addEventListener('click', () => console.log('目标捕获'), true);  // 后注册
+        
+        
+    </script>
+</body>
+
+</html>

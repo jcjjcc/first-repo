@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function a(){
+            console.log(a)
+            function b(){
+                console.log(b)
+                function c(){
+                    console.log(c)
+                }
+                c()
+            }
+            b()
+        }
+        a()
+
+
+        //函数在创建时【scopes】就已经确定了所在的作用域，等自身调用时，自身的AO也会压入【scopes】
+        //进入全局，产生GO
+        //a()  产生a的aAO对象
+        //     a的【scopees】：
+        //                  0：aAO={b:fun}   
+        //                  1：GO
+        //b()  产生b的bAO对象
+        //                  0：bAO={c:fun}
+        //                  1：aAO
+        //                  2：GO
+        //c()  产生c的cAO对象
+        //                  0：cAO={}
+        //                  1：bAO
+        //                  2：aAO 
+        //                  3：GO
+        
+    </script>
+</body>
+</html>

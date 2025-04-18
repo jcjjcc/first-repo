@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态font-size + 媒体查询</title>
+</head>
+<style>
+    /* html {
+        动态设置font-size
+        font-size: calc(100vw / 7.5);
+    } */
+
+     /* screen是一种媒体类型，用于指定屏幕设备。 */
+    @media screen and (min-width: 320px) {
+        html {
+            font-size: 42.66667px;
+        }
+    }
+
+    .box {
+        width: 1rem;
+        height: 1rem;
+        background-color: red;
+    }
+</style>
+<body>
+    <div class="box"></div>
+</body>
+</html>
+
+
+
+
+
+
+<!-- 方案一:媒体查询
+    可以通过媒体查询来设置不同尺寸范围内的屏幕html的font-size尺寸;
+    缺点:
+    1.我们需要针对不同的屏幕编写大量的媒体查询;
+    2.如果动态改变尺寸,不会实时的进行更新,指定的是范围; 
+-->

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj1 = {
+            name: 'obj1',
+            foo: function () {
+                console.log(this)
+            }
+        }
+        var obj2 = {
+            name: 'obj2',
+        };
+
+        (obj2.foo = obj1.foo)()
+        // var obj2 = { name: 'obj2' }
+        // obj2.foo = obj1.foo;
+        // obj2.foo()
+
+        
+
+    </script>
+</body>
+</html>

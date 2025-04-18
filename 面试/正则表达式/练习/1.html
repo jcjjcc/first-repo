@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'abc345efgabcab'
+        // 1.去掉字符串中的a、b、c字符,形成结果:'345efg'
+        var res1 = str.replace(/[abc]/g,(match)=> '')
+        console.log(res1)
+
+        //2.将字符串中的数字用中括号括起来,形成结果:'abc[345]efgabcab'
+
+        var res2 = str.replace(/\d+/,(match)=>'[' + match + ']')
+
+        console.log(res2)
+
+        //3.将字符串中的每个数字的值分别乘以2,形成结果:'abc6810efgabcab'
+        var res3 = str.replace(/\d/g,(match)=> 2*match)
+        console.log(res3)
+    </script>
+</body>
+</html>

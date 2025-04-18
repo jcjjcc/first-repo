@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+     /* 假设 设计稿的宽度为 375px   如果要一个宽高100px的box*/
+    .box {
+        /* width: 100/37.5 rem */
+        /* height: 100/37.5 rem */
+        width: 2.66667rem;
+        height: 2.66667rem;
+        background-color: red;
+    }
+</style>
+<body>
+    <div class="box"></div>
+    <script>
+        const htmlE = document.documentElement;
+
+        function setHtmlFontSize() {
+            //视口的宽度
+            const htmlWidth = htmlE.clientWidth;
+            const htmlFontSize = htmlWidth / 10;
+            htmlE.style.fontSize = htmlFontSize + 'px'
+            
+        }
+        setHtmlFontSize()
+        window.addEventListener('resize',setHtmlFontSize)
+
+    </script>
+</body>
+</html>
+
+
+<!-- 
+1.手动计算
+2.less
+3.postcss-pxtorem插件 -->

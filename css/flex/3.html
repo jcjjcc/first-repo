@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 500px;
+            
+             /* 设置边框样式为虚线 */
+            border: 2px dashed #000; /* 2px是边框宽度，dashed表示虚线样式，#000是颜色 */
+    
+             /* 设置边框圆角 */
+            border-radius: 10px; /* 你可以根据需要调整这个值 */
+            display: flex;
+            /* flex-direction: row; 默认为row，表示横向排列 */
+
+        }
+        .item {
+            border: 1px solid #000;
+            background-color: aqua;
+
+            /* flex:0 1 auto;  flex默认值*/
+            /* grow shrink basic */
+
+            flex:1 0px;
+        }
+        .item:nth-child(1) {
+            flex-shrink: 1;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">item 11111111</div>
+        <div class="item">item 2</div>
+        <div class="item">item 3</div>
+        <div class="item">
+            item 4  <br/>
+            item 4  <br/>
+            item 4  <br/>
+        </div>
+        <div class="item">item 5</div>
+    </div>
+</body>
+</html>

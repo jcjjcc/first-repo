@@ -12,7 +12,7 @@ class UserService extends Service {
                     username
                 }
             })
-            console.log(result,'result')
+            // console.log(result,'result')
             return result;
 
         }catch (error) {
@@ -34,6 +34,7 @@ class UserService extends Service {
           return null;
         }
       }
-    
+
 }
+
 module.exports = UserService

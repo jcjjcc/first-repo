@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const message = "fdabc123 faBC323 dfABC222 A2324aaBc"
+
+        //所有的abc转换成cba，忽略大小写
+        const newMessage1 = message.replace(/abc/ig,"cba")
+        console.log(newMessage1)  
+
+        //将字符串中的数字全部删除
+        const newMessage2 = message.replace(/\d+/g,"")
+        console.log(newMessage2)
+
+        //match
+        const re1 = /abc/ig 
+        const result =  message.match(re1)
+        console.log(result)
+
+        //matchAll
+        //传入的正则表达式要添加修饰符g
+        const result2 = message.matchAll(re1)
+        console.log(result2)
+        console.log(...result2)
+
+        //replace/replaceAll
+
+        //split
+        const result3 = message.split(re1)
+        console.log(result3)
+
+        //search
+        const result4 = message.search(re1)
+        console.log(result4)
+
+    </script>
+</body>
+</html>

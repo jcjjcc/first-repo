@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <input class="input" type="text">
+
+    <div class="box1">点我</div>
+    <script>
+        //ajax请求数据      输入验证
+
+        let input = document.querySelector('.input');
+        input.addEventListener('input', debounce(function () {
+            console.log('获取联想词');
+        }, 2000, true));
+
+        function debounce(func, delay, immediate) {
+            let timer = null;
+            let debounced = function (...args) {
+                if (timer) clearTimeout(timer);
+                if (immediate) {
+                    const callNow = !timer;
+                    timer = setTimeout(() => {
+                        timer = null;
+                    }, delay);
+                    if (callNow) func.apply(this, args);
+                } else {
+                    timer = setTimeout(() => {
+                        func.apply(this, args);
+                    }, delay);
+                }
+            };
+            debounced.cancel = function(){
+                clearTimeout(timer)
+                timer = null
+            }
+            return debounced
+        }
+
+
+
+    </script>
+</body>
+
+</html>

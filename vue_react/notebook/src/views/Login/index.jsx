@@ -4,17 +4,19 @@ import React, {
     useCallback, // 缓存函数
     useEffect
 } from 'react';
+
 // 代码风格要介绍 写注释 驼峰命名 函数式编程 封装 模块话 伪代码
 import {
     Cell,
-    Input,
+    Field,
     Button,
     Checkbox,
     Toast
-} from 'zarm';
+} from 'vant';
 import s from './style.module.less'
 import cx from 'classnames';
 import CustomIcon from '@/components/CustomIcon';
+import {login} from '@/api'
 
 const Login = () => {
     const [type, setType] = useState('login');
@@ -25,8 +27,25 @@ const Login = () => {
         document.title = '登录'
     }, [])
 
-    const onSubmit = () => {
-
+    const onSubmit = async () => {
+        if (!userName) {
+            Toast('请输入账号');
+            return;
+        }
+        if (!passWord) {
+            Toast('请输入密码');
+            return;
+        }
+        try{
+            if (type == 'login') {
+                const { data } = await login(userName, passWord);
+                console.log('登录成功:', data);
+                localStorage.setItem('token', data.token);
+            }
+        }catch(err){
+            console.error('登录错误:', err);
+            Toast('登录失败: ' + (err.message || '未知错误'));
+        }
     }
 
     return (
@@ -38,22 +57,23 @@ const Login = () => {
                 <span className={cx({ [s.active]: type == 'register' })} onClick={() => setType('register')}>注册</span>
             </div>
             <div className={s.form}>
-                <Cell icon={<CustomIcon type="zhanghao" />}>
-                    <Input
+                <Cell.Group>
+                    <Field
+                        label={<CustomIcon name="user-o" />}
                         placeholder="请输入账号"
                         clearable
-                        type="text"
-                        onChange={(value) => { setUserName(value) }}
+                        value={userName}
+                        onChange={(value) => setUserName(value)}
                     />
-                </Cell>
-                <Cell icon={<CustomIcon type="mima" />}>
-                    <Input
+                    <Field
+                        label={<CustomIcon name="lock" />}
                         placeholder="请输入密码"
                         clearable
                         type="password"
-                        onChange={(value) => { setPassWord(value) }}
+                        value={passWord}
+                        onChange={(value) => setPassWord(value)}
                     />
-                </Cell>
+                </Cell.Group>
                 {/* {type == "register" ? (<Cell icon={<CustomIcon type="mima" />}>
                     <Input
                         clearable
@@ -70,7 +90,9 @@ const Login = () => {
                             <label className="text-light">阅读并同意<a>《使用条款》</a></label>
                         </div>) : null
                     }
-                    <Button onClick={onSubmit} block theme="primary">{type == "login" ? "登录" : "注册"}</Button>
+                    <Button type="primary" block onClick={onSubmit}>
+                        {type == "login" ? "登录" : "注册"}
+                    </Button>
                 </div>
             </div>
         </div>

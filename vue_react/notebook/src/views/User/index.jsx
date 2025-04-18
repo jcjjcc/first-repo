@@ -1,9 +1,12 @@
-import React, { useState,useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import s from './style.module.less'
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import {
-  Cell, Input, Button, Modal
-} from 'zarm';
+  Cell,
+  Field,
+  Button,
+  Dialog
+} from 'vant';
 import { getUserInfo } from '@/utils'
 
 const User = () => {
@@ -46,46 +49,46 @@ const User = () => {
       </div>
       <div className={s.content}>
         <Cell
-          hasArrow
+          isLink
           title="用户信息修改"
-          onClick={() => { navigate('/userinfo')  }}
+          onClick={() => { navigate('/userinfo') }}
           icon={<img style={{ width: 20, verticalAlign: '-7px' }} src="//s.yezgea02.com/1616032174786/cryptocurrency.png" />}
         />
         <Cell
-          hasArrow
+          isLink
           title="重置密码"
-          onClick={() => { navigate('/about')  }}
+          onClick={() => { navigate('/about') }}
           icon={<img style={{ width: 20, verticalAlign: '-7px' }} src="//s.yezgea02.com/1616032174786/cryptocurrency.png" />}
         />
         <Cell
-          hasArrow
+          isLink
           title="关于我们"
           onClick={() => { navigate('/about') }}
           icon={<img style={{ width: 20, verticalAlign: '-7px' }} src="//s.yezgea02.com/1616032174786/cryptocurrency.png" />}
         />
       </div>
-      <Button className={s.logout} block theme="danger" onClick={logout}>退出登录</Button>
-      <Modal
-        title="标题"
-        closable
-        visible={showSignatureModal}
-        onCancel={() => {setShowSignatureModal(false)}}
-        footer={
-          <Button block shape="rect" theme="primary" onClick={() => { }}>
-            确定
-          </Button>
-        }
+      <Button className={s.logout} block type="danger" onClick={logout}>退出登录</Button>
+      {/* 修改签名 */}
+      <Dialog
+        title="修改签名"
+        show={showSignatureModal}
+        onClose={() => setShowSignatureModal(false)}
+        showCancelButton
+        showConfirmButton
+        onConfirm={() => {
+          // 处理确认逻辑
+          setShowSignatureModal(false)
+        }}
       >
-        <Input
-          maxLength={50}
-          type="text"
-          row={3}
+        <Field
+          maxlength={50}
+          type="textarea"
+          rows={3}
           value={signature}
-          onChange={(value) => { setSignature(value) }}
+          onChange={(value) => setSignature(value)}
           placeholder="请输入签名"
         />
-
-      </Modal>
+      </Dialog>
     </div>
   )
 }

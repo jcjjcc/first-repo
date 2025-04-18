@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function foo(...args) {
+        //     console.log(args); 
+        // }
+        // foo(1,2,[3,4])
+        // foo([1,2,3],[4,5,6],2)
+
+        function Person() {
+            console.log("this is:", this);
+        }
+
+        const BoundPerson = Person.bind({ foo: 1 });
+
+        // 普通调用 - 使用 bind 的 this
+        BoundPerson(); // 输出: this is: { foo: 1 }
+
+        // new 调用 - 忽略 bind 的 this
+        new BoundPerson(); // 输出: this is: Person {}  // 这里的 this 是 Person 的实例
+    </script>
+</body>
+
+</html>

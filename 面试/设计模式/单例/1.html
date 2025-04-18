@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            
+        }
+        Person.getInstance = (function(){
+           let instance = null;
+           return function(name,age){
+              if(!instance) {
+                instance = new Person(name,age);
+              }
+              return instance;
+           }     
+        })()
+
+        const p1 = Person.getInstance('zs', 18);
+        const p2 = Person.getInstance('ls', 20);
+        console.log(p1 === p2);
+
+        // let CreatePerson = (function(){
+        //     let instance = null;
+        //     return class {
+        //         constructor(name,age){
+        //             if(instance) return instance;
+        //             this.name = name;
+        //             this.age = age;
+        //             instance = this;
+        //             return instance;
+        //         }
+        //     }
+        // })()
+        // const p1 = new CreatePerson('zs', 18);
+        // const p2 = new CreatePerson('ls', 20);
+        // console.log(p1 === p2);
+        // console.log(p1);
+        // console.log(p2);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #box{
+        /* width: 600px;
+        height: 600px; */
+        background: deeppink;
+        /*
+        在不设置父容器高度的情况下，让父容器能感知到浮动元素的高度
+        */
+        /* overflow: hidden; */
+        float: right;
+    }
+
+    #box>div:first-child {
+        width: 200px;
+        height: 200px;
+        background: green;
+        float:right;
+    }
+    #box>div:nth-child(2) {
+        width: 200px;
+        height: 200px;
+        background: aqua;
+        float:right;
+    }
+    #box>div:nth-child(3) {
+        width: 200px;
+        height: 200px;
+        background: red;
+        float: right;
+    }
+    #box>div:last-child {
+        width: 400px;
+        height: 400px;
+        background: black
+    }
+</style>
+
+<body>
+     <div id="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+     </div>
+</body>
+</html>

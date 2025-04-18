@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+  const posts = [
+    { title: 'I love JavaScript', author: 'Wes Bos', id: 1 },
+    { title: 'CSS!', author: 'Chris Coyier', id: 2 },
+    { title: 'Dev tools tricks', author: 'Addy Osmani', id: 3 },
+  ];
+  const authors = [
+    { name: 'Wes Bos', twitter: '@wesbos', bio: 'Canadian Developer' },
+    { name: 'Chris Coyier', twitter: '@chriscoyier', bio: 'CSS Tricks and CodePen' },
+    { name: 'Addy Osmani', twitter: '@addyosmani', bio: 'Googler' },
+  ];
+
+   function getPostById(id){
+     return new Promise((resolve, reject) => {
+         setTimeout(()=> {
+            const post = posts.find(post => post.id === id);
+            if(post){
+                resolve(post);
+            }
+            else{
+                reject('Post not found');
+            }
+         },1000)
+     })
+   }
+   
+   function getAuthorByPost(post){
+     return new Promise((resolve, reject) => {
+         setTimeout(()=> {
+            const authorDetails = authors.find(author => author.name === post.author);
+            if(authorDetails){
+                post.author = authorDetails;
+                resolve(post);
+            }
+            else{
+                reject('Author not found');
+            }
+         },2000)
+     })    
+   }
+   
+//    getPostById(1)
+//    .then(post => {
+//         console.log(post);
+//         getAuthorByPost(post).then(post => {
+//             console.log(post);
+//         })
+//    })
+
+    //   getPostById(1)
+    //  .then(post => {
+    //       console.log(post);
+    //       return getAuthorByPost(post);
+    //   })
+    //   .then(post => {
+    //       console.log(post);
+    //   })
+    //   .catch(error => {
+    //       console.log(error);
+    //   })
+      
+    // 多个异步任务并发时，可以使用 promise.all() 方法
+    (async ()=>{
+      try{
+        const post = await getPostById(1);
+        console.log(post);
+        const author = await getAuthorByPost(post);
+        console.log(author);
+      }catch(error){
+        console.log(error);
+      }
+    })()
+    </script>
+</body>
+</html>

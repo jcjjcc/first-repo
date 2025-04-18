@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=no">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        
+    }
+    .f {
+        width: 700px;
+        height: 500px;
+        margin: 0 ,auto;
+        margin-top: 15%;
+        background-color: brown;
+        overflow: auto;
+    }
+    .child {
+        width: 200px;
+        height: 200px;
+        margin: 0 ,auto;
+        margin-top: 15%;
+        background-color: aqua;
+    }
+</style>
+<body>
+    <div class="f">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+    <script>
+        // callback函数的参数（entries）是一个数组，每个成员都是一个IntersectionObserverEntry对象
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.intersectionRatio <= 0) return 
+                console.log(entry.target);
+                observer.unobserve(entry.target);
+            })
+        })
+
+        let arr = document.querySelectorAll('.f .child');
+        [...arr].forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>

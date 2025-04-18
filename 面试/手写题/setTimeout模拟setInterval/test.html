@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let num = 1
+        // const id = setInterval(()=>{
+
+        //     for (let i=0;i<106066060;i++){
+        //         const sapn = document.createElement("span")
+        //     }
+        //     num++;
+        //     if(num>=5) clearInterval(id)
+        //     console.log(new Date().toLocaleTimeString())
+        // },1000)
+
+        // setInterval(() => {
+        //     console.log("Task started at", new Date().toISOString());
+        //     // let start = Date.now();
+        //     // while (Date.now() - start < 3000) { } // 模拟一个耗时 3s 的任务
+        //     console.log("Task finished at", new Date().toISOString());
+        // }, 2000); // 任务每 2 秒触发一次
+
+
+
+        // function runTask() {
+        //     console.log("Task started at", new Date().toISOString());
+
+        //     let start = Date.now();
+        //     while (Date.now() - start < 3000) { } // 模拟一个耗时 3s 的任务
+
+        //     console.log("Task finished at", new Date().toISOString());
+
+        //     setTimeout(runTask, 1000); // 确保任务执行完后，再等待 1 秒后执行
+        // }
+
+        // runTask();
+
+        let id = requestAnimationFrame(() => {
+            console.log(`hello at ${new Date().toISOString()}`);
+        });
+        let id2 = requestAnimationFrame(() => {
+            console.log(`hello2 at ${new Date().toISOString()}`);
+        });
+        let id3 = requestAnimationFrame(() => {
+            console.log(`hello3 at ${new Date().toISOString()}`);
+        });
+    </script>
+</body>
+
+</html>

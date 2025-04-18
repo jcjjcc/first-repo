@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        生成器函数:
+        1.function后面会跟上符号:*
+        2.代码的执行可以被yield控制
+        3.生成器函数默认在执行时,返回一个生成器对象
+            要执行生成器函数内部代码，需要生成器对象调用next()方法
+            当遇到yield时,会暂停代码的执行
+        */
+        function* foo(name){
+            console.log('111',name)
+            const name1 = yield "aaa"
+            console.log('222',name1)
+            console.log('333',name1)
+            yield "bbb"
+            console.log('444')
+            console.log('555')
+            return "ccc"
+        }
+
+        const generator = foo('next1')
+        console.log(generator.next())//{done: false, value: "aaa"}
+        console.log(generator.next('next2'))//{done: false, value: "bbb"}
+        console.log(generator.next())//{done: true, value: "ccc"
+        for (const item of generator) {
+            console.log(item) 
+        }
+    </script>
+</body>
+</html>

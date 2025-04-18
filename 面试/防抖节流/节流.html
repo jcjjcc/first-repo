@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        height: 2000px;
+    }
+</style>
+<body>
+    <script>
+        //节流：
+        window.onscroll = throttle(function(){
+            console.log('节流')
+        },2000)
+        //节流函数
+        // function throttle(fn,delay){
+        //     let flag = true;
+        //     return function(){
+        //         if(flag){
+        //             setTimeout(() => {
+        //                 fn.call(this);
+        //                 flag = true;
+        //             }, delay);
+        //         }
+        //         flag = false;
+        //     } 
+        // }
+
+
+        function throttle(fn,delay){
+            let t = null,
+            begin = Date.now()
+            return function(...args){
+                let cur = Date.now()
+                clearTimeout(t)
+                if(cur - begin >= delay){
+                    fn.apply(this,args)
+                    begin = cur
+                }else{
+                    t = setTimeout(() => {
+                        fn.apply(this,args)                       
+                    }, delay);
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>

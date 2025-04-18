@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片懒加载测试</title>
+    <style>
+        .list-item{
+          height: 400px; 
+          margin: 5px; 
+          list-style: none;
+        }
+        .list-item-img{
+          height: 100%;
+        }
+      </style>
+</head>
+
+<body>
+    <h2>图片懒加载测试 (向下滚动查看更多图片)</h2>
+    <ul>
+        <li class="list-item"><img src="" class="list-item-img" lazyload="true"
+                data-original="https://img.36krcdn.com/hsossms/20250313/v2_15ad8ef9eca34830b4a2e081bbc7f57a@000000_oswg172644oswg1536oswg722_img_000?x-oss-process=image/resize,m_mfit,w_960,h_400,limit_0/crop,w_960,h_400,g_center" />
+        </li>
+        <li class="list-item"><img src="" class="list-item-img" lazyload="true"
+                data-original="https://img.36krcdn.com/hsossms/20250312/v2_aeaa7a1d51e74c3a8f909c96cd73a687@000000_oswg169950oswg1440oswg600_img_jpeg?x-oss-process=image/format,webp" />
+        </li>
+        <li class="list-item"><img src="" class="list-item-img" lazyload="true"
+                data-original="https://img.36krcdn.com/hsossms/20250312/v2_1c88dc26ff9341cf8738d670896ce3a8@5284654_oswg847922oswg1440oswg600_img_png?x-oss-process=image/resize,m_mfit,w_960,h_400,limit_0/crop,w_960,h_400,g_center/format,webp" />
+        </li>
+        <li class="list-item"><img src="" class="list-item-img" lazyload="true"
+                data-original="https://img.36krcdn.com/hsossms/20250312/v2_e1d92f43af2c4f47b8852ea8786e606f@6100851_oswg635095oswg1053oswg495_img_png?x-oss-process=image/resize,m_mfit,w_960,h_400,limit_0/crop,w_960,h_400,g_center/format,webp" />
+        </li>
+        <li class="list-item"><img src="" class="list-item-img" lazyload="true"
+                data-original="https://img.36krcdn.com/hsossms/20250307/v2_9295b22d4a1b4b55ac4c3379b2da80cc@6100851_oswg781048oswg1053oswg495_img_png?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center/format,webp" />
+        </li>
+        <li class="list-item"><img src="" class="list-item-img" lazyload="true"
+                data-original="https://img.36krcdn.com/hsossms/20250313/v2_0f70e0a75a8d4736a050e846cd6ab3e5@1743780481_oswg183216oswg1080oswg629_img_000?x-oss-process=image/format,jpg/interlace,1" />
+        </li>
+    </ul>
+</body>
+<script>
+    // // 等待DOM加载完成
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     //包含所有待懒加载的图片 DOM 元素。
+    //     let imgList = [...document.querySelectorAll('img[lazyload="true"]')]
+    //     let length = imgList.length
+        
+    //     const imgLazyLoad = (function () {
+    //         let count = 0
+    //         return function () {
+    //             //记录了那些已经加载过的图片索引
+    //             let deleteIndexList = []
+    //             imgList.forEach((img, index) => {
+    //                 let rect = img.getBoundingClientRect()
+    //                 if (rect.top < window.innerHeight) {
+    //                     console.log(`第${index}张加载`)
+    //                     img.src = img.getAttribute('data-original')
+    //                     deleteIndexList.push(index)
+    //                     count++
+    //                     if (count === length) {
+    //                         document.removeEventListener('scroll', imgLazyLoad)
+    //                     }
+    //                 }
+    //             })
+    //             //保留那些不在 deleteIndexList 中的图片，除去已经加载的图片
+    //             imgList = imgList.filter((img, index) => !deleteIndexList.includes(index))
+    //         }
+    //     })()
+
+    //     // 页面加载时先执行一次，加载首屏图片
+    //     imgLazyLoad();
+        
+    //     // 添加滚动事件监听
+    //     document.addEventListener('scroll', imgLazyLoad)
+    // });
+
+
+    var observer = new IntersectionObserver(function(changes) {
+            console.log(changes);
+            changes.forEach(function(element, index) {
+                // statements
+                if (element.intersectionRatio > 0 && element.intersectionRatio <= 1) {
+                    element.target.src = element.target.dataset.original;
+                }
+            });
+        });
+
+
+        function addObserver() {
+            var listItems = document.querySelectorAll('.list-item-img');
+            listItems.forEach((item) => {
+                observer.observe(item); // 观察一个元素
+            });
+        }
+
+        addObserver();
+
+
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+     /* 假设 设计稿的宽度为 375px   如果要一个宽高100px的box*/
+     /* const htmlFontSize = htmlWidth / 10; */
+     /* 视口的宽度 / 100 = 1vw
+     那我再×10不就是 视口宽度/10了吗 */
+     /* html {
+        font-size: 10vw;
+     } */
+    .box {
+        /* width: 100/37.5 rem */
+        /* height: 100/37.5 rem */
+        /* width: 2.66667rem;
+        height: 2.66667rem; */
+        /* 1rem = 10vw; 那我rem也不需要了 */
+        /* 1rem = 37.5px; */
+        /* 1vw = 3.75px; */
+        width: 26.66667vw;
+        height: 26.66667vw;
+        background-color: red;
+    }
+</style>
+<body>
+    <div class="box"></div>
+    <script>
+        // 如果使用vw这些js都不需要
+        // const htmlE = document.documentElement;
+
+        // function setHtmlFontSize() {
+        //     //视口的宽度
+        //     const htmlWidth = htmlE.clientWidth;
+        //     const htmlFontSize = htmlWidth / 10;
+        //     htmlE.style.fontSize = htmlFontSize + 'px'
+            
+        // }
+        // setHtmlFontSize()
+        // window.addEventListener('resize',setHtmlFontSize)
+
+    </script>
+</body>
+</html>
+
+
+
+    <!-- rem :
+    rem是一个相对单位，相对于根元素html的font-size来计算的。
+        1. 动态的设置html的font-size
+          font-size = 视口的宽度 / 10
+        2. 换算成rem的单位
+
+    vw :
+    vw 表示视口宽度的百分比，1vw 等于视口宽度的 1%。
+    1. 动态的设置html的font-size
+      font-size = 视口的宽度 / 100  -> 1vw -->

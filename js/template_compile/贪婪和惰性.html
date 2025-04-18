@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const str = '我最喜欢的书是《黄金时代》和《三国演义》'
+        const reg = /《.+?》/gi
+        console.log(str.match(reg));
+        console.log(reg.exec(str));
+    </script>
+</body>
+</html>

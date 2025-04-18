@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let template = '我是{{name}},年龄{{age}},性别{{sex}}'
+        let person = {
+            name: '张三',
+            age: 25,
+            sex: '男'
+        }
+
+        // let reg = /\{\{(\w+)\}\}/
+        // console.log(template.match(reg))      
+        // console.log(reg.exec(template))  
+
+        // function compile(template, data) {
+        //     let reg = /\{\{(\w+)\}\}/
+        //     while(reg.test(template)) {
+        //         // let key = reg.exec(template)[1]
+        //         let key = template.match(reg)[1]
+        //         let value = data[key]
+        //         template = template.replace(reg, value)
+        //     }
+        //     return template
+        // }
+
+
+        function compile(template, data) {
+            let reg = /\{\{(\w+)\}\}/g 
+            return template.replace(reg,(match,p1)=>{
+                console.log(match,p1)
+                //{{name}} name
+                //{{age}} age
+                //{{sex}} sex
+                return p1 in data? data[p1] : ''
+            })
+        }
+
+        
+
+
+        console.log(compile(template, person))
+    </script>
+</body>
+</html>

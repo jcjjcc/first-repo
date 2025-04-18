@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    .box {
+        width: 5rem;
+        height: 5rem;
+        background-color: red;
+    }
+</style>
+<body>
+    <div class="box"></div>
+    <script>
+        const htmlE = document.documentElement;
+        const clientWidth = htmlE.clientWidth;
+        const innerWidth = window.innerWidth;
+        console.log('clientWidth',clientWidth);
+        console.log('innerWidth',innerWidth);
+
+        function setHtmlFontSize() {
+            //视口的宽度
+            const htmlWidth = htmlE.clientWidth;
+            const htmlFontSize = htmlWidth / 10;
+            htmlE.style.fontSize = htmlFontSize + 'px'
+            
+        }
+        setHtmlFontSize()
+        window.addEventListener('resize',setHtmlFontSize)
+        
+    </script>
+</body>
+</html>

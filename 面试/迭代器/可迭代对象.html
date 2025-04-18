@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const infos = {
+            friends:['abc','cba','nba'],
+            [Symbol.iterator]: function(){
+                let index = 0
+                const infosIterator = {
+                    next: () => {
+                        if(index < this.friends.length){
+                            return {done: false, value: this.friends[index++]}
+                        }else{
+                            return {done: true, value: undefined}
+                        }
+                    } 
+                }
+                return infosIterator
+            }      
+        }
+
+        // const infosIterator = infos[Symbol.iterator]()
+        // console.log(infosIterator.next())
+        // console.log(infosIterator.next())
+        // console.log(infosIterator.next())
+        // console.log(infosIterator.next())
+
+        // for(let item of infos){
+        //     console.log(item)
+        // }
+
+
+
+
+        const student = ['abc','cba','nba']
+        console.log(student[Symbol.iterator])
+        console.log(student[Symbol.iterator]())
+        const iterator = student[Symbol.iterator]()
+        console.log(iterator.next())
+        console.log(iterator.next())
+        console.log(iterator.next())
+        console.log(iterator.next())
+        console.log(iterator.next())
+        console.log(iterator.next())    
+
+        // const obj = {'name':'zhangsan','age':18}
+
+        // for(let item of obj){
+        //     console.log(item)
+        // }
+        
+        // console.log(a) 
+        
+        // console.log([...a]) //Uncaught TypeError: obj is not iterable
+    </script>
+</body>
+</html>

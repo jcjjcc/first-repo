@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //基于消息机制
+    //订阅发布者模式
+    const myWorker = new Worker('./worker.js');
+    myWorker.addEventListener('message', (e) => {
+        console.log(e.data);
+    });
+    myWorker.postMessage('Hello World');
+    </script>
+</body>
+</html>

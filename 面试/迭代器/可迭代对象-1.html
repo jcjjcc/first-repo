@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const infos = {
+               name:'zhangsan',
+               age:18,
+               height:1.88,
+               weight:75,
+               [Symbol.iterator]: function(){
+                    const keys = Object.keys(this)
+                    // const values = Object.values(this)
+                    // const entries = Object.entries(this)
+                    let index = 0
+                    const iterator = {
+                        next: () => {
+                            if(index < keys.length){
+                                return {done: false, value: keys[index++]}
+                            }else{
+                                return {done: true, value: undefined}
+                            }
+                        }
+                    }
+                    return iterator
+               } 
+        }
+
+        for(let item of infos){
+            console.log(item)
+        }
+
+        // for(let item of infos){
+        //     const [a,b] = item
+        //     console.log(a,b)
+        // }
+
+    </script>
+</body>
+</html>

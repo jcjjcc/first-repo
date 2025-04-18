@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function sum(a, b, c) {
+        //     return a + b + c;
+        // }
+
+        // const boundSum = sum.bind(null, 1, 2); // 永久绑定 a=1, b=2
+        // console.log(boundSum(3,5,6)); // 1+2+3 = 6
+        // // 无法改变已绑定的1和2
+        function Person(name, age, country) {
+            this.name = name;
+            this.age = age;
+            this.country = country;
+            return null
+        }
+
+        // const BoundPerson = Person.bind(null, 'John', 30);
+        // const p1 = new BoundPerson();       // Person {name: 'John', age: 30, country: undefined}
+        // const p2 = new BoundPerson('USA');  // Person {name: 'John', age: 30, country: 'USA'}
+        const p = new Person('John', 30, 'USA');
+        console.log(p)  
+        
+    </script>
+</body>
+
+</html>

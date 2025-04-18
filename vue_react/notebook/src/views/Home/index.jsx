@@ -2,7 +2,7 @@ import React, {
   useState
 } from "react"
 import s from './style.module.less'
-import { Icon } from 'zarm'
+import CustomIcon from '@/components/CustomIcon'
 import BillItem from '@/components/BillItem'
 
 const Home = () => {
@@ -82,15 +82,16 @@ const Home = () => {
         </div>
         <div className={s.typeWrap}>
           <div className={s.left}>
-            <span className={s.title}>类型<Icon className={s.arrow} type="arrow-bottom"/></span>
+            <span className={s.title}>类型<CustomIcon className={s.arrow} name="arrow-down"/></span>
           </div>
           <div className={s.right}>
-            <span className={s.time}>2025-02<Icon className={s.arrow} type="arrow-bottom"/></span>
+            <span className={s.time}>2025-02<CustomIcon className={s.arrow} name="arrow-down"/></span>
           </div>
         </div>
       </div>
       <div className={s.contentWrap}>
         {
+          // 列表每条项目都需要加个key
           list.map((item) => <BillItem key={item.date} bill={item}/>)
         }
       </div>

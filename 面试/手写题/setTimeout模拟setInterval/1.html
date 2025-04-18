@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const myInterval = (fun, time) => {
+            let interval = null;
+            function loop() {
+                interval = setTimeout(() => {
+                    fun();
+                    loop();
+                }, time);
+            }
+            loop();
+            return {
+                clear(){
+                    clearTimeout(interval)
+                }
+            }
+        };
+
+        function myClearInterval(flagTimer) {
+            flagTimer.clear(); // 使用 clearTimeout 来清除定时器
+        }
+
+        const timer = myInterval(() => {
+            console.log('hello world');
+        }, 1000);
+
+        setTimeout(() => {
+            myClearInterval(timer); // 调用自定义的 clearInterval 函数 
+        }, 5000)
+        // setInterval(() => {
+        //     console.log("Task started at", new Date().toISOString());
+        //     console.log("Task finished at", new Date().toISOString()); 
+        // },2000)
+
+    </script>
+</body>
+
+</html>

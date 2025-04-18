@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const names = ['abc', 'cba', 'nba', 'mba'];
+        const ages = [10, 20, 30];
+
+        // function* createArrayIterator(arr){
+        //     for(let i =0;i<arr.length;i++){
+        //         yield arr[i] 
+        //     }
+        // }
+        function* createArrayIterator(arr){
+            //arr 得是一个可迭代对象
+            yield* arr // 相当于for循环的效果
+        }
+        const namesIterator = createArrayIterator(names)
+        // console.log(namesIterator.next())
+        // console.log(namesIterator.next())
+        // console.log(namesIterator.next())
+        // console.log(namesIterator.next())
+        // console.log(namesIterator.next())
+
+
+        const infos = {
+               name:'zhangsan',
+               age:18,
+               height:1.88,
+               weight:75,
+            //    [Symbol.iterator]: function(){
+            //         const keys = Object.keys(this)
+            //         // const values = Object.values(this)
+            //         // const entries = Object.entries(this)
+            //         let index = 0
+            //         const iterator = {
+            //             next: () => {
+            //                 if(index < keys.length){
+            //                     return {done: false, value: keys[index++]}
+            //                 }else{
+            //                     return {done: true, value: undefined}
+            //                 }
+            //             }
+            //         }
+            //         return iterator
+            //    } 
+                [Symbol.iterator]: function*(){
+                    //arr 得是一个可迭代对象
+                    yield* Object.keys(this) // 相当于for循环的效果
+                }
+        }
+
+        const generator = infos[Symbol.iterator]()
+        console.log(generator.next())
+        console.log(generator.next())
+        console.log(generator.next())
+        console.log(generator.next())
+
+
+
+    </script>
+</body>
+</html>

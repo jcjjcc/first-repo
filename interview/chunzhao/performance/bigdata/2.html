@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div id="container"></div>
+<script>
+let ul = document.getElementById('container')
+let total = 100000; //一共10万条数据
+let once = 20; //每次渲染20条数据
+let page = total/once; //一共5000次
+let index = 0; //
+
+function loop(curTotal,curIndex){
+    if(curTotal <=0 ){
+        return false
+    }
+    //每次多少条 有时可能不足20条
+    let pageCount = Math.min(curTotal,once)
+    setTimeout(()=>{
+        for(let i = 0; i<pageCount; i++){
+            let li = document.createElement('li')
+            li.innerHTML = curIndex + i
+            ul.appendChild(li)
+        }
+        //每次渲染完后，总数减去20，索引值加20
+        loop(curTotal-pageCount,curIndex+pageCount)
+    },0)
+}
+
+loop(total,index)
+
+</script> 
+</body>
+</html>

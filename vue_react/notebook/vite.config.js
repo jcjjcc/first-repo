@@ -34,14 +34,17 @@ export default defineConfig({
   },
   server: {
     proxy: {
+      /**
+       *   /api/userInfo 实际请求 http://localhost:5173/api/userInfo
+       *   vite运行在5173端口，vite一看发给我的请求以api开头，我帮你转发到target
+       */
       '/api': {
-        target: 'http://localhost:3000/api/',
+        target: 'http://localhost:7001',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }
-
 })
 //E:\codeStore\workspace\lesson_hm\vue_react\notebook 
 // console.log(__dirname)

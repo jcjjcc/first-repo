@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 500px;
+            
+             /* 设置边框样式为虚线 */
+            border: 2px dashed #000; /* 2px是边框宽度，dashed表示虚线样式，#000是颜色 */
+    
+             /* 设置边框圆角 */
+            border-radius: 10px; /* 你可以根据需要调整这个值 */
+            display: flex;
+            /* flex-direction: row; 默认为row，表示横向排列 */
+
+        }
+        .item {
+            border: 1px solid #000;
+            background-color: aqua;
+            /* width: max-content; */
+            /* width: min-content; */
+            flex-basis: 50px;
+            flex-grow: 1;
+            /* (50px + 1x) * 5 = 500px */
+            /* x=50px */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">item 1111111</div>
+        <div class="item">item 2</div>
+        <div class="item">item 3</div>
+        <div class="item">
+            item 4  <br/>
+            item 4  <br/>
+            item 4  <br/>
+        </div>
+        <div class="item">item 5</div>
+        <!-- <div class="item">如果元素内部内容很长（例如单一的长字符串），使用 max-content 可能会导致布局问题，特别是在响应式设计中。过长的宽度可能会影响到整体页面布局。
+            max-content 是一个相对现代的 CSS 属性，旧版本的浏览器可能不支持，尽管大多数现代浏览器已支持它。
+        </div> -->
+        <!-- <div class="item">如果元素内部内容很长（例如单一的长字符串），使用 max-content 可能会导致布局问题，特别是在响应式设计中。过长的宽度可能会影响到整体页面布局。
+            max-content 是一个相对现代的 CSS 属性，旧版本的浏览器可能不支持，尽管大多数现代浏览器已支持它。
+        </div>
+        <div class="item">如果元素内部内容很长（例如单一的长字符串），使用 max-content 可能会导致布局问题，特别是在响应式设计中。过长的宽度可能会影响到整体页面布局。
+            max-content 是一个相对现代的 CSS 属性，旧版本的浏览器可能不支持，尽管大多数现代浏览器已支持它。
+        </div>
+        <div class="item">如果元素内部内容很长（例如单一的长字符串），使用 max-content 可能会导致布局问题，特别是在响应式设计中。过长的宽度可能会影响到整体页面布局。
+            max-content 是一个相对现代的 CSS 属性，旧版本的浏览器可能不支持，尽管大多数现代浏览器已支持它。
+        </div>
+        <div class="item">如果元素内部内容很长（例如单一的长字符串），使用 max-content 可能会导致布局问题，特别是在响应式设计中。过长的宽度可能会影响到整体页面布局。
+            max-content 是一个相对现代的 CSS 属性，旧版本的浏览器可能不支持，尽管大多数现代浏览器已支持它。
+        </div>
+        <div class="item">如果元素内部内容很长（例如单一的长字符串），使用 max-content 可能会导致布局问题，特别是在响应式设计中。过长的宽度可能会影响到整体页面布局。
+            max-content 是一个相对现代的 CSS 属性，旧版本的浏览器可能不支持，尽管大多数现代浏览器已支持它。
+        </div>
+        <div class="item">如果元素内部内容很长（例如单一的长字符串），使用 max-content 可能会导致布局问题，特别是在响应式设计中。过长的宽度可能会影响到整体页面布局。
+            max-content 是一个相对现代的 CSS 属性，旧版本的浏览器可能不支持，尽管大多数现代浏览器已支持它。
+        </div> -->
+    </div>
+</body>
+</html>

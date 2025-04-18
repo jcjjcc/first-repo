@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>This is iframe child page.</h1>
+  <script>
+  window.addEventListener('message', (e) => {
+    console.log(e, '--------- 收到消息')
+    window.parent.postMessage('来自child 的消息', '*')
+  })
+  </script>
+</body>
+</html>

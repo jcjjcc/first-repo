@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      /*
+      事实上我们平时创建的很多原生对象已经实现了可迭代协议,
+D String
+会生成一个可选代对象的:
+Array
+Map.
+Set、
+arguments对象、
+NodeList集合;*/  
+ 
+      //数组
+      const arr = ['abc','cba','nba','mba'];
+      const iterator = arr[Symbol.iterator]();
+     // set
+      const set = new Set(['abc','cba','nba','mba']);
+      const setIterator = set[Symbol.iterator]();
+      console.log(setIterator)
+      //arguments
+      function fn(){
+        
+        const iterator = arguments[Symbol.iterator]();
+        console.log(iterator) 
+      }
+      fn(1,2,3)
+      //nodeList
+
+
+      //
+      const names = ['abc', 'cba', 'nba','mba'];
+      const info = {
+        name:'why',
+        age:18,
+        gender:'男',
+        height:1.88,
+        [Symbol.iterator]: function(){
+                    // const keys = Object.keys(this)
+                    const values = Object.values(this)
+                    // const entries = Object.entries(this)
+                    let index = 0
+                    const iterator = {
+                        next: () => {
+                            if(index < values.length){
+                                return {done: false, value: values[index++]}
+                            }else{
+                                return {done: true, value: undefined}
+                            }
+                        }
+                    }
+                    return iterator
+               } 
+      } 
+
+
+    //   function foo(arg1,arg2,arg3,arg4){
+    //       console.log(arg1,arg2,arg3,arg4)
+    //   } 
+    //   foo(...names)
+    //   foo(...info)
+
+       for(const item of info){
+        console.log(item) 
+       }      
+    </script>
+</body>
+</html>

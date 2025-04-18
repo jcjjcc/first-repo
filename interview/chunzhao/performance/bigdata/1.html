@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="container">
+
+    </ul>
+    <script>
+        let now = new Date()
+        const total = 80000
+        let ul = document.getElementById('container')
+        for(let i = 0;i<total;i++){
+            let li = document.createElement('li')
+            li.innerHTML = i
+            ul.appendChild(li)
+        }
+        let end = new Date()
+        // js执行时间
+        console.log(end-now)
+        setTimeout(()=>{
+            console.log(new Date()-now)
+        },0)
+        Promise.resolve().then(()=>{
+            console.log('111111111111')
+        })
+    </script>
+</body>
+</html>  

@@ -1,31 +1,18 @@
-# app-server
+
+## egg.js 
+
+- koa 极简
+  - middlewares 洋葱模型  一个模型就是一个函数
+  - ctx
+
+- 企业级开发  大型项目
+  mvc
+  不用从零开始，提供了一个后台开发的模板
+  - app目录 就是应用开发的主目录
+  - 约定大于一切 约定俗称
+    - router.js
 
 
 
-## QuickStart
-
-<!-- add docs here for user -->
-
-see [egg docs][egg] for more detail.
-
-### Development
-
-```bash
-npm i
-npm run dev
-open http://localhost:7001/
-```
-
-### Deploy
-
-```bash
-npm start
-npm stop
-```
-
-### npm scripts
-
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-
-[egg]: https://eggjs.org
+npm i mysql2 egg-sequelize
+  mysql的驱动  

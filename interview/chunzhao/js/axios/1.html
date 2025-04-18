@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+// baseURL
+// 请求拦截
+// 响应拦截 
+// 发送请求 
+// es6 默认值 + 解构赋值
+// config 对象
+function simpleAxios({ baseURL = '' } = {}) {
+  // console.log(baseURL)
+  // 拦截器
+  const interceptors = {
+    // 请求前拦截器数组 callback 
+    // A  B  C  执行掉？ 顺序 promise.then 返回值？后一个的输入
+    // reduce 通过多个拦截器， 只为接下来的一次请求 
+    request: [],
+    response: []
+  }
+
+  function useRequestInterceptor(interceptor) {
+    console.log(interceptor)
+  }
+
+  return {
+    get(url) {},
+    useRequestInterceptor
+  }
+}
+
+const axios = simpleAxios({
+  baseURL: 'https://api.github.com/'
+})
+
+axios.useRequestInterceptor(config => {
+  console.log('Request Interceptor', config);
+
+  // promise 源码 Promise.resolve(2）
+  return config;
+})
+
+axios.useRequestInterceptor(config => {
+  console.log('Request Interceptor 22222222', config);
+  // Promise.resolve(config) then(() => { return 2 })  return Promise.resolve(2)
+  // promise 源码 Promise.resolve(2）
+  return config;
+})
+
+axios.get('users/shunwuyu')
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const message = "我最喜欢的两本书:《黄金时代》和《沉默的大多数》"
+        // const nameRe = /(《)(.*?)(》)/g
+        // console.log(message.match(nameRe))
+        // console.log(nameRe.exec(message))
+
+        // const message = "我最喜欢的两本书:《黄金时代》和《沉默的大多数》"
+        // const nameRe = /(《)(.*?)(》)/g
+        // const result = message.matchAll(nameRe)
+        // // console.log(result)
+        // for(let item of result){
+        //     console.log(item) 
+        // }
+
+        // const regex = /(hello) world/ig;
+        // const str = "hello hello world";
+        // const match = str.match(regex);
+        // console.log(match); 
+        // console.log(match[0]); // "hello world"  → 整个匹配结果
+        // console.log(match[1]); // "hello"        → 第一个分组
+
+
+        // const message = "我最喜欢的两本书:《黄金时代》和《沉默的大多数》"
+        // const nameRe = /(?<start>《)(?<name>.*?)(?<end>》)/
+        // console.log(message.match(nameRe))
+
+        // const info = "dfabcabcfabcdfdabcabcabcljcbacballnbanba;jk;j"
+        // //abc或者cba或者nba至少出现两次
+        // const abcReg = /(abc|cba|nba){2,}/g
+        // console.log(info.match(abcReg))
+
+
+        // const str = "a1b2c3d4";
+        // const regex = /\d/g;  // 匹配所有数字
+        // const result = str.matchAll(regex);
+        // console.log(result);
+        // for (const match of result) {
+        //     console.log(match[0]);
+        // }
+
+
+        // const message = "我最喜欢的两本书:《黄金时代》和《沉默的大多数》"
+        // const nameRe = /《(.*?)》/
+        // console.log(message.match(nameRe))
+        // console.log(nameRe.exec(message))
+
+        // const message = "我最喜欢的两本书:《黄金时代》和《沉默的大多数》";
+        // const nameRe = /《(.*?)》/g // 无全局标志 g
+
+        // let result;
+        // while ((result = nameRe.exec(message)) !== null) {
+        //     console.log(result);
+        // }
+
+        const message = "我最喜欢的两本书:《黄金时代》和《沉默的大多数》";
+        const nameRe = /《(.*?)》/ // 无全局标志 g
+
+        let result = nameRe.exec(message)
+        console.log(result[0]) //只会匹配第一个  《黄金时代》
+
+    </script>
+</body>
+
+</html>

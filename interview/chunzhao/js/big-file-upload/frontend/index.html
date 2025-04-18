@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大文件上传</title>
+    <script src="./node_modules/axios/dist/axios.js"></script>
+</head>
+<body>
+    <input type="file" id="input" >
+    <button id="upload" type="button">上传</button>
+    <!-- 上传进度条 -->
+    <div id="progress">
+
+    </div>
+    <script>
+        let input = document.getElementById('input')
+        let upload = document.getElementById('upload')
+        let file = {} //文件对象
+        let chunkList = [] //切片数组
+        const CHUNK_SIZE = 2*1024*1024 //切片大小
+        input.addEventListener('change',function(e){
+            //html5 提供了 访问文件系统的能力
+            //早期因为安全问题 禁止访问
+            // console.log(e.target.files)
+            file = e.target.files[0]
+            // console.log(file)
+            //切片
+           createChunk(file)
+        })
+        //2MB
+        //切片
+        function createChunk(f,size = CHUNK_SIZE){
+            // File 文件对象 0-》total 二进制文件
+            let cur = 0
+            // console.log(f,'11111')
+            while(cur < f.size){
+                chunkList.push(
+                    {
+                        //Blob 二进制对象
+                      file: f.slice(cur,cur+size)
+                    }
+                
+                )
+                cur += size
+            }
+        }
+
+        //点击上传按钮后，先通过map把切片数组转换为内容更加详细上传的数组
+        upload.addEventListener('click',()=>{
+            const uploadList = chunkList.map(({file:blobFile},index)=>{
+                return {
+                    file:blobFile,
+                    size:blobFile.size,
+                    percent:0,
+                    chunkName:`${file.name}-${index}`,
+                    fileName:file.name,
+                    index
+                }
+            })
+            // console.log(uploadList)
+            //上传
+            uploadFile(uploadList)
+        })
+       
+        //上传逻辑的具体实现
+        async function uploadFile(list){
+            const requestList = list.map(({file,fileName,index,chunkName})=>{
+                //上传 html 提供的FormData类
+                const formData = new FormData()
+                formData.append('file',file)
+                formData.append('fileName',fileName)
+                formData.append('chunkName',chunkName)
+                return {
+                    formData,
+                    index
+                }
+            })
+            .map(({formData,index})=>axios.post('http://localhost:3000/upload',formData))
+            console.log(requestList)
+
+            await Promise.all(requestList)
+            console.log('切片上传完毕')
+        }
+
+
+    </script>
+</body>
+</html>

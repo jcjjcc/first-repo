@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './style.module.less';
 import PropTypes from 'prop-types';
-import { Cell } from 'zarm';
+import { Cell } from 'vant';
 import { typeMap } from '@/utils';
 import CustomIcon from '@/components/CustomIcon';
 
@@ -37,25 +37,20 @@ const BillItem = ({ bill }) => {
               <>
                 <CustomIcon 
                   className={s.itemIcon}
-                  type={item.type_id? typeMap[item.type_id].icon: 1}
+                  name={item.type_id ? typeMap[item.type_id].icon : 'question-o'}
                 />
                 <span>{ item.type_name }</span>
               </>
             }
-            description={
-              (
-                <span style={{color: item.pay_type == 2 ? 'red': '#39be77'}}>
+            label={item.date}
+            value={
+              <span style={{color: item.pay_type == 2 ? 'red': '#39be77'}}>
                 {`${item.pay_type == 1 ? '-' : '+'}${item.amount}`}
-                </span>
-              )
+              </span>
             }
-            help={<div>{item.date}</div>}
-          >
-
-          </Cell>
+          />
         ))
       }
-      
     </div>
   )
 }

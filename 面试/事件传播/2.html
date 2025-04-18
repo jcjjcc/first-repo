@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+       .grandparent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+       .parent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            background-color:green;
+        }
+       .child {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="grandparent" onclick="console.log('红色')">
+        <div class="parent" onclick="console.log('绿色')">
+            <div class="child" onclick="console.log('蓝色');; return false;">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+//假设你有一个包含许多列表项<li>的无序列表<ul>, 并且这些列表项是动态生成的。你需要为每个列表项添加点击事件，以便在用户点击时显示该列表项的内容。
+
+//使用事件委托
+let ul = document.getElementById('myList');
+let lis = ul.getElementsByTagName('li');
+
+for (let i = 0; i < lis.length; i++) {
+    lis[i].addEventListener('click', function() {
+        console.log(this.innerHTML);
+    });
+}
+//这种方法的问题在于，如果新的<li>元素被动态添加到<ul>中，它们不会自动获得点击事件处理函数，除非你再次遍历并为新增加的元素绑定事件。
+
+//使用事件委托的方式：
+
+document.getElementById('myList').addEventListener('click', function(event) {
+    if (event.target && event.target.nodeName == 'LI') {
+        console.log(event.target.innerHTML); // 显示被点击的<li>的内容
+    }
+});
+
+
+
+</script>
+
+
+
+
+
+</script>
+</html>

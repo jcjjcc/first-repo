@@ -1,3 +1,14 @@
-import { Icon } from 'zarm';
+import React from 'react'
+import { Icon } from 'vant'
 
-export default Icon.createFromIconfont('//at.alicdn.com/t/font_2236655_w1mpqp7n1ni.js')
+const CustomIcon = (props) => {
+  return <Icon {...props} />
+}
+
+export default CustomIcon
+
+/**
+ * 从 Vant UI 库导入了 Icon 组件
+ * 使用方式: <CustomIcon name="图标名称" />
+ * 图标名称可以在 Vant UI 的图标库中选择
+ */
